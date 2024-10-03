@@ -1,0 +1,18 @@
+.size_m {
+    width: 40%;
+    height: 20%;
+    border: 2px solid var(--foreground);
+    text-indent: 10px;
+    border-radius: 8px;
+    min-height: 40px;
+    margin: 10px;
+}
+.size_l {
+    width: 50%;
+    height: 15%;
+    border: 2px solid var(--foreground);
+    text-indent: 10px;
+    border-radius: 8px;
+    margin: 10px;
+    min-height: 60px;
+}

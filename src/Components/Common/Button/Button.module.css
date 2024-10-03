@@ -1,0 +1,23 @@
+.size_m {
+    width: 40%;
+    height: 20%;
+    min-height: 40px;
+}
+.size_l {
+    width: 50%;
+    height: 15%;
+    min-height: 60px;
+}
+.button {
+    border: 2px solid var(--foreground);
+    text-indent: 15px;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    transition-duration: 0.6s;
+}
+.button:hover {
+    background-color: var(--foreground);
+    color: var(--background);
+}
