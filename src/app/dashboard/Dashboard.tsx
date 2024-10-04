@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./Dashboard.module.css"
 import Button from '@/Components/Common/Button/Button';
 import Image from 'next/image';
@@ -12,6 +12,13 @@ interface studentInterface {
     fio: string,
     isHere: boolean,
 }
+
+interface lifetimeSelectInterface {
+    id: number,
+    time: number,
+    text: string
+}
+
 
 const initialStudents: studentInterface[] = [
     { id: 1, group: "A1", fio: "Иванов Иван Иванович", isHere: false },
@@ -38,10 +45,31 @@ const initialStudents: studentInterface[] = [
 ];
 
 
+const lifetimeSelect : lifetimeSelectInterface[] = [
+    {id: 1, time:300000, text: '5 мин.'},
+    {id: 2, time:600000, text: '10 мин.'},
+    {id: 3, time:900000, text: '15 мин.'},
+]
+
 
 const Dashboard = () => {
 
     const [students, setStudents] = useState<studentInterface[]>(initialStudents);
+    const [getQr, setGetQr] = useState<boolean>(false)
+    const [lifeTime, setLifeTime] = useState<number>(300000)
+
+    useEffect(() => {
+        if (getQr) {
+            const timeout = setTimeout(() => {
+                setGetQr(false);
+            }, lifeTime);
+    
+            return () => {
+                clearTimeout(timeout);
+            };
+        }
+    }, [getQr, lifeTime]);
+    
 
     const handleAddStudent = (id: number): void => {
         setStudents(prevStudents =>
@@ -50,6 +78,14 @@ const Dashboard = () => {
             )
         );
     };
+
+    const handleGetQr = (): void => {
+        setGetQr(true)
+    }
+
+    const handleChangeLifeTime = (e: React.ChangeEvent<HTMLSelectElement>) : void => {
+        setLifeTime(Number(e.target.value))
+    }
 
     return (
         <main className={`main ${styles.content}`}>
@@ -84,12 +120,32 @@ const Dashboard = () => {
             </div>
             <div className={styles.qr_block}>
             <p className={styles.teacher__name}><b>Имя преподавателя:</b> Фамилия Имя Отчество</p>
+            <select className={styles.qr_select} onChange={handleChangeLifeTime}>
+                {lifetimeSelect.map((element: lifetimeSelectInterface) => {
+                    return (
+                        <option 
+                            value={element.time} 
+                            key={element.id}
+                        >
+                            {element.text}
+                        </option>
+                    )
+                })}
+            </select>
+                {getQr ?
                 <Image
                     src={QrCode}
                     alt='QR-Code'
                     width={200}
                     height={200}
                 />
+                :
+                <Button
+                    size="m"
+                    onClick={() => {handleGetQr()}}
+                    text="Получить QR-код"
+                />    
+            }
             </div>
         </main>
     );
