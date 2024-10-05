@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./not-found.module.css";
-import image from "../../public/assets/404.png";
-import Image from "next/image";
+// import image from "../../public/assets/404.png";
+// import Image from "next/image";
 import Link from "next/link";
 
 const NotFound = () => {
