@@ -16,7 +16,6 @@ const NotFound = () => {
           <QrSvg />
         </div>
       </div>
-
       <Link href={"/"} className={`${styles.link}`}>
         Вернуться назад
       </Link>
