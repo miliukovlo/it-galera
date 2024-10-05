@@ -14,6 +14,10 @@
   gap: 100px;
 }
 
+.qrSvgContainer {
+  position: absolute;
+}
+
 .link {
   margin: 15px;
   font-size: 2vh;
