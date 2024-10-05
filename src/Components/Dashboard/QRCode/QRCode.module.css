@@ -1,0 +1,16 @@
+.qr_block {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+.qr_select {
+    margin: 10px;
+}
+.qr_header {
+    font-size: 2vh;
+    color: var(--foreground);
+}
