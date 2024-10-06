@@ -1,6 +1,6 @@
 import React from "react";
 
-const letter4 = () => {
+const Letter4 = () => {
   return (
     <div>
       <svg
@@ -18,4 +18,4 @@ const letter4 = () => {
   );
 };
 
-export default letter4;
+export default Letter4;
