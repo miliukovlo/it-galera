@@ -1,0 +1,46 @@
+.content {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.information__block, .lesson {
+    width: 80%;
+    height: 30%;
+    min-height: 100px;
+    border-radius: 16px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+}
+.lesson {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lessons__block {
+    width: 80%;
+    min-height: 60%;
+}
+.information__text {
+    text-align: left;
+    font-size: 2vh;
+    width: 30%;
+}
+.progress__block {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progress__text {
+    margin-right: 15px;
+    font-size:2vh;
+}
