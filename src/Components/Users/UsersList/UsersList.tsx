@@ -43,6 +43,7 @@ const UsersList = () => {
                     )
                 })}
             </ul>
+            <div className={styles.observer}></div>
         </article>
     );
 }
