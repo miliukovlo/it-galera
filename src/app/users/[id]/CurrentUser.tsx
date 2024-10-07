@@ -24,7 +24,7 @@ const CurrentUser : React.FC = () => {
             <div className={styles.information__block}>
                 <p className={styles.information__text}><b>ФИО:</b> {GetUser.name}</p>
                 <p className={styles.information__text}><b>Группа:</b> {GetUser.group}</p>
-                <p className={styles.information__text}><b>Роль:</b> {GetUser.role}</p>
+                <p className={styles.information__text}><b>Роль:</b> {GetUser.role === "student" ? "Студент" : "Преподаватель"}</p>
             </div>
             <div className={styles.lessons__block}>
                 {GetUser.lessons.map((lesson) => {
