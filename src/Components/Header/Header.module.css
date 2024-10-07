@@ -1,15 +1,20 @@
 .header {
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: var(--secondary-color);
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--secondary-color);
 }
 .image {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 .text__header {
-    font-size: 3vh;
-    color:var(--foreground);
+  font-size: 3vh;
+  color: var(--foreground);
+}
+
+.navContainer {
+  display: flex;
+  gap: 30px;
 }
