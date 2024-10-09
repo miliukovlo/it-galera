@@ -1,6 +1,7 @@
 import React from 'react';
 import Auth from './Auth';
 import { Metadata } from 'next';
+import { login } from '@/authLib';
 
 export const metadata: Metadata = {
     title: "Страница входа",
@@ -8,9 +9,12 @@ export const metadata: Metadata = {
   };
 
 const AuthPage = () => {
+    const loginLib = login
     return (
         <>
-            <Auth/>
+            <Auth
+                loginLib={loginLib}
+            />
         </>
     );
 }
