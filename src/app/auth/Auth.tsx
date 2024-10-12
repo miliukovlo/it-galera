@@ -7,11 +7,11 @@ import Button from '@/Components/Common/Button/Button';
 import { useRouter } from 'next/navigation';
 
 interface AuthProps {
-    loginLib: (value: string) => Promise<boolean>
+    loginLib: (value: string) => Promise<boolean>,
 }
 
 const Auth : React.FC<AuthProps> = ({
-    loginLib
+    loginLib,
 }) => {
     const [login, setLogin] = useState<string>("")
     const [password, setPassword] = useState<string>("")
