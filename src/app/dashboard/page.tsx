@@ -1,6 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Dashboard from './Dashboard';
+import { getIsAuth } from '@/utils/isAuth';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
     title: "Список",
@@ -8,9 +10,15 @@ export const metadata: Metadata = {
   };
 
 const DashboardPage = async () => {
+    const isAuth = await getIsAuth()
+    if (!isAuth) {
+        redirect('/auth')
+    }
     return (
         <>
-            <Dashboard/>
+            <Dashboard
+                isLogin={isAuth}
+            />
         </>
     );
 }
