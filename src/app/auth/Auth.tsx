@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styles from "./auth.module.css"
 import Input from '@/Components/Common/Input/Input';
 import Button from '@/Components/Common/Button/Button';
+import { useRouter } from 'next/navigation';
 
 interface AuthProps {
     loginLib: (value: string) => Promise<boolean>,
@@ -15,6 +16,7 @@ const Auth : React.FC<AuthProps> = ({
     const [login, setLogin] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
+    const {replace} = useRouter()
 
     const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLogin(e.target.value)

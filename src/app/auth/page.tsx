@@ -2,8 +2,7 @@ import React from 'react';
 import Auth from './Auth';
 import { Metadata } from 'next';
 import { login } from '@/authLib';
-import { getIsAuth } from '@/utils/isAuth';
-import { redirect } from 'next/navigation';
+
 
 export const metadata: Metadata = {
     title: "Страница входа",
@@ -11,10 +10,6 @@ export const metadata: Metadata = {
 };
 
 export const AuthPage = async () => {
-    const isAuth = await getIsAuth()
-    if (isAuth) {
-        redirect('/dashboard')
-    }
     return (
         <>
             <Auth

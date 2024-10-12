@@ -1,8 +1,6 @@
 import React from 'react';
 import Users from './Users';
 import { Metadata } from 'next';
-import { getIsAuth } from '@/utils/isAuth';
-import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
     title: "Список",
@@ -10,10 +8,6 @@ export const metadata: Metadata = {
   };
 
 const Page = async () => {
-    const isAuth = await getIsAuth()
-    if (!isAuth) {
-        redirect('/auth')
-    }
     return (
         <Users
         />

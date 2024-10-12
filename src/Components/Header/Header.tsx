@@ -1,16 +1,27 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import logo from "../../../public/assets/LogoTiu.jpg";
-import LogoutIcon from "../Common/Svg/Icons/LogoutIcon/LogoutIcon";
 import DarkThemeIcon from "../Common/Svg/Icons/DarkThemeIcon/DarkThemeIcon";
-import { usePathname } from "next/navigation";
+import LogoutButton from "./Components/LogoutButton";
+import { useRouter } from "next/navigation";
 
-const Header = () => {
-  const pathname = usePathname();
+interface HeaderProps {
+  type: "auth" | "other"
+}
+
+const Header : React.FC<HeaderProps> = ({
+  type
+}) => {
+
+  const router = useRouter()
+
+  const handleExit = () => {
+    router.push('/auth')
+  }
+
   return (
     <header className={styles.header}>
       <Image
@@ -23,12 +34,10 @@ const Header = () => {
       />
 
       <nav className={styles.navContainer}>
-        {pathname === "/auth" ? (
+        {type === "auth" ? (
           <></>
         ) : (
-          <Link href={"/auth"}>
-            <LogoutIcon fill="white" />
-          </Link>
+          <LogoutButton routerFunc={handleExit}/>
         )}
 
         <DarkThemeIcon fill="white" />

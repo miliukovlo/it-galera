@@ -38,7 +38,7 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 export async function logout() {
-  cookies().delete('login')
+  cookies().delete('session')
 }
 
 export async function getSession() {
