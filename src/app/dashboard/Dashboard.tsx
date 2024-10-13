@@ -5,7 +5,7 @@ import styles from "./Dashboard.module.css"
 import StudentsList from '@/Components/Dashboard/StudentsList/StudentsList';
 import QRCode from '@/Components/Dashboard/QRCode/QRCode';
 
-const Dashboard = () => {
+const Dashboard : React.FC = () => {
 
     return (
         <main className={`main ${styles.content}`}>

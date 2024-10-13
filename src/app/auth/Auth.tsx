@@ -6,8 +6,13 @@ import Input from '@/Components/Common/Input/Input';
 import Button from '@/Components/Common/Button/Button';
 import { useRouter } from 'next/navigation';
 
-const Auth = () => {
+interface AuthProps {
+    loginLib: (value: string) => Promise<boolean>,
+}
 
+const Auth : React.FC<AuthProps> = ({
+    loginLib,
+}) => {
     const [login, setLogin] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
@@ -22,7 +27,12 @@ const Auth = () => {
     const handleLogin = () => {
         if (login !== "" && password !== "") {
             setError(false)
-            replace("/dashboard")
+            try {
+                loginLib(login)
+                replace("/dashboard")
+            } catch(e) {
+                console.error(e)
+            } 
         } else {
             setError(true)
         }
