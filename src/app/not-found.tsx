@@ -7,16 +7,16 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <main className={`${styles.content}`}>
-      <div className={`${styles.svgContainer}`}>
+    <main className={styles.content}>
+      <div className={styles.svgContainer}>
         <Letter4 />
         <Square />
         <Letter4 />
-        <div className={`${styles.qrSvgContainer}`}>
+        <div className={styles.qrSvgContainer}>
           <QrSvg />
         </div>
       </div>
-      <Link href={"/"} className={`${styles.link}`}>
+      <Link href={"/"} className={styles.link}>
         Вернуться назад
       </Link>
     </main>
