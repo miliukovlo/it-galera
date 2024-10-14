@@ -1,0 +1,5 @@
+.svg:hover {
+    fill: red;
+    animation-duration: 10s;
+    animation-fill-mode:backwards;
+}

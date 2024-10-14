@@ -20,3 +20,28 @@
   gap: 30px;
   margin: 40px;
 }
+
+.hoverAnimation {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hoverAnimation:hover{
+  color: rgba(255, 255, 255,1);
+  transition: all 0.3s;
+}
+
+.hoverAnimation::after{
+  margin-top: 6px;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: rgb(145, 90, 234);
+  display: block;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.hoverAnimation:hover::after{
+  opacity: 1;
+}
