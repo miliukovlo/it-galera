@@ -5,6 +5,9 @@ import styles from "./auth.module.css"
 import Input from '@/Components/Common/Input/Input';
 import Button from '@/Components/Common/Button/Button';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { loginData } from '@/data/loginData';
+import { setUser } from '@/store/userData/userStore';
 
 interface AuthProps {
     loginLib: (value: string) => Promise<boolean>,
@@ -13,6 +16,7 @@ interface AuthProps {
 const Auth : React.FC<AuthProps> = ({
     loginLib,
 }) => {
+    const dispatch = useDispatch();
     const [login, setLogin] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [error, setError] = useState<boolean>(false)
@@ -27,12 +31,21 @@ const Auth : React.FC<AuthProps> = ({
     const handleLogin = () => {
         if (login !== "" && password !== "") {
             setError(false)
-            try {
-                loginLib(login)
-                replace("/dashboard")
-            } catch(e) {
-                console.error(e)
-            } 
+            const user = loginData.find(user => user.email === login)
+            if (user?.email === login && user.password === password) {
+                setError(false)
+                try {
+                    loginLib(login)
+                    dispatch(setUser(
+                        user
+                    ))
+                    replace("/dashboard")
+                } catch(e) {
+                    console.error(e)
+                } 
+            } else {
+                setError(true)
+            }
         } else {
             setError(true)
         }
