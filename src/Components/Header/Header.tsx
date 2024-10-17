@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Header.module.css";
 import Image from "next/image";
 import logo from "../../../public/assets/LogoTiu.jpg";
@@ -10,11 +10,14 @@ import { headerNavInterface } from "@/Interface/headerNavInterface";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { loginData } from "@/data/loginData";
+import { setUser } from "@/store/userData/userStore";
 
 const linksTeacher: headerNavInterface[] = [
   { id: "1", text: "Расписание", href: "/schedule" },
   { id: "2", text: "Студенты", href: "/users" },
 ];
+
 const linksAdmin: headerNavInterface[] = [
   { id: "1", text: "Создать пользователя", href: "/create" },
   { id: "2", text: "Пользователи", href: "/users" },
@@ -22,15 +25,32 @@ const linksAdmin: headerNavInterface[] = [
 
 interface HeaderProps {
   type: "auth" | "other";
+  role?: Promise<string | null>;
 }
 
-const Header: React.FC<HeaderProps> = ({ type }) => {
+const Header: React.FC<HeaderProps> = ({ type, role }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const dispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.user.user);
+
+  useEffect(() => {
+    const fetchRole = async () => {
+      if (role) {
+        const userRole = await role;
+        const userData = loginData.find(user => user.role === userRole);
+        
+        if (userData) {
+          dispatch(setUser(userData));
+        }
+      }
+    };
+
+    fetchRole();
+  }, [role, dispatch]);
+
   const handleExit = () => {
     router.push("/auth");
   };
-  const user = useSelector((state: RootState) => state.user.user);
 
   return (
     <header className={styles.header}>
@@ -42,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ type }) => {
         alt='Логотип ВШЦТ'
         priority={true}
       />
-      {type === "auth" ? <></> : 
+      {type === "auth" ? null : 
         <nav className={styles.navContainer}>
           {user?.role === "teacher" ? 
             linksTeacher.map((link) => (
@@ -60,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ type }) => {
           <LogoutButton routerFunc={handleExit} dispatch={dispatch}/>
         </nav>
       }
-      </header>
+    </header>
   );
 };
 

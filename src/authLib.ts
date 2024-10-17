@@ -48,6 +48,12 @@ export async function getSession() {
   return await decrypt(session);
 }
 
+export async function getRole() {
+  const role = cookies().get("role")?.value;
+  if (!role) return null;
+  return role;
+}
+
 export async function updateSession(request: NextRequest) {
   const session = request.cookies.get("session")?.value;
   if (!session) return;

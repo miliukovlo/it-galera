@@ -3,7 +3,9 @@ import Schedule from './Schedule';
 
 const Page = () => {
     return (
-        <Schedule/>
+        <main className='main'>
+            <Schedule/>
+        </main>
     );
 }
 
