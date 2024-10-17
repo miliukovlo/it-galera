@@ -6,13 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 const oneDaySeconds = 86400 * 1000
 
-export const login = async (loginValue: string) : Promise<boolean> => {
+export const login = async (loginValue: string, role: "teacher" | "admin") : Promise<boolean> => {
     try {
         const expires = new Date(Date.now() + oneDaySeconds);
         const session = await encrypt({ loginValue, expires });
         cookies().set("session", session, { expires, httpOnly: true });
-        console.log(cookies().get('session'))
-        return true
+        cookies().set("role", role,{ expires, httpOnly: true });
+        return true;
     } catch (e) {
         console.error(e)
         throw new Error()
@@ -39,6 +39,7 @@ export async function decrypt(input: string): Promise<any> {
 
 export async function logout() {
   cookies().delete('session')
+  cookies().delete("role")
 }
 
 export async function getSession() {
