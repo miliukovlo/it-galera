@@ -1,18 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { updateSession } from "./authLib";
 
 export async function middleware(request: NextRequest) {
-    const session = request.cookies.get('session')
+    const session = request.cookies.get('session');
+    const role = request.cookies.get('role');
+
     if (session && request.nextUrl.pathname === '/auth') {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
-    } else if (!session && (
-        request.nextUrl.pathname === '/dashboard' ||
-        request.nextUrl.pathname === '/users' ||
-        request.nextUrl.pathname === '/users:id'
-    )) {
-        return NextResponse.redirect(new URL('/auth', request.url))
+        const redirectUrl = role?.value === "teacher" ? '/schedule' : '/users';
+        return NextResponse.redirect(new URL(redirectUrl, request.url));
     }
-    // return await updateSession(request);
+
+    if (!session && (
+        request.nextUrl.pathname === '/dashboard' || 
+        request.nextUrl.pathname === '/users' || 
+        request.nextUrl.pathname === '/users:id' || 
+        request.nextUrl.pathname === '/create' || 
+        request.nextUrl.pathname === '/schedule'
+    )) {
+        return NextResponse.redirect(new URL('/auth', request.url));
+    }
+
+    if (role?.value === "teacher" && request.nextUrl.pathname === "/create") {
+        return NextResponse.redirect(new URL('/schedule', request.url)); 
+    }
+    if (role?.value === "admin" && (
+        request.nextUrl.pathname === "/dashboard" || 
+        request.nextUrl.pathname === "/schedule"
+    )) {
+        return NextResponse.redirect(new URL('/users', request.url));
+    }
 }
 
 export const config = {
@@ -20,6 +35,8 @@ export const config = {
         "/auth",
         "/dashboard",
         "/users",
-        "/users/:id"
+        "/users/:id",
+        "/create",
+        "/schedule"
     ]
 }

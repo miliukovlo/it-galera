@@ -10,7 +10,7 @@ import { loginData } from '@/data/loginData';
 import { setUser } from '@/store/userData/userStore';
 
 interface AuthProps {
-    loginLib: (value: string) => Promise<boolean>,
+    loginLib: (value: string, role: "teacher" | "admin") => Promise<boolean>,
 }
 
 const Auth : React.FC<AuthProps> = ({
@@ -35,7 +35,7 @@ const Auth : React.FC<AuthProps> = ({
             if (user?.email === login && user.password === password) {
                 setError(false)
                 try {
-                    loginLib(login)
+                    loginLib(login, user.role)
                     dispatch(setUser(
                         user
                     ))
