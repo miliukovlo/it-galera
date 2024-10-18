@@ -37,12 +37,13 @@
     align-items: center;
     justify-content: center;
     transition-duration: 0.7s;
+    color: var(--background)
 }
 .stud__here {
-    background-color: darkgreen;
+    background-color: rgb(125, 175, 138);
 }
 .stud__not_here {
-    background-color: darkred;
+    background-color: rgb(204, 93, 101);
 }
 .list__element {
     width: 100%;

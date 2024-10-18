@@ -30,12 +30,12 @@ const Student : React.FC<StudentProps> = ({
                     <li className={styles.stud__group}>Группа: {group}</li>
                     <li className={styles.stud__fio}>{fio}</li>
                     <div className={isHere ? `${styles.stud__status} ${styles.stud__here}` : `${styles.stud__status} ${styles.stud__not_here}`}>
-                        {isHere ? "Здесь" : "Отсутствует"}
+                        {isHere ? "Присутствует" : "Отсутствует"}
                     </div>
                     <Button
                         text={!isHere ? "Отметить" : "Отсутствует"}
                         onClick={() => {handleAddStudent(id)}}
-                        size="m"
+                        size="s"
                     />
                 </ul>
             </div>

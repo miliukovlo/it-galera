@@ -37,7 +37,7 @@ const QRCode = () => {
     return (
         <aside className={styles.qr_block}>
             <h2 className={styles.qr_header}>Укажите время действия QR-кода</h2>
-            <select className={styles.qr_select} onChange={handleChangeLifeTime}>
+            <select className={styles.qr_select} disabled onChange={handleChangeLifeTime}>
                 {lifetime.map((element: lifetimeInterface) => {
                     return (
                         <option 
