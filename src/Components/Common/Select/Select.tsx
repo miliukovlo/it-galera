@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Select.module.css";
-import { optionsInterface } from "@/Interface/optionsInterface";
+import { optionsInterface } from "@/Interface/selectDataInterface";
 
 interface SelectProps {
   defaultText: string;
@@ -15,12 +15,12 @@ export const Select: React.FC<SelectProps> = ({
 }: SelectProps) => {
   return (
     <div className={styles.filterSelect}>
-      <select onChange={onChange} defaultValue={""}>
+      <select name={defaultText} onChange={onChange} defaultValue={""}>
         <option value={""} color='gray' disabled hidden>
           {defaultText}
         </option>
         {options.map((option) => (
-          <option key={option.text} value={defaultText}>
+          <option key={option.text} value={option.text}>
             {option.text}
           </option>
         ))}
