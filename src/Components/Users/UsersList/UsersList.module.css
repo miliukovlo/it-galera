@@ -31,33 +31,3 @@
     
 }
 
-/* .filterContainer select {
-    height: 35px;
-    width: 150px;
-    border: 2px solid var(--foreground);
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    padding-left: 5px;
-    cursor: pointer;
-}
-
-.filterSelect {
-    position: relative;
-}
-
-.filterSelect::before {
-    content: "";
-    position: absolute;
-    display: block;
-    left: 85%;
-    top: 40%;
-    pointer-events: none;
-
-   width: 0px;
-   height: 0px;
-   border-style: solid;
-   border-width: 0 5px 8.7px 5px;
-   border-color: transparent transparent #666666 transparent;
-   transform: rotate(180deg);
-} */

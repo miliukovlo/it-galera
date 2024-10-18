@@ -59,9 +59,6 @@ const UsersList = () => {
               : "admin",
         }));
       }
-      if (id === "department") {
-        console.log("Это кафедра!");
-      }
     }
   };
   useEffect(() => {
@@ -70,7 +67,6 @@ const UsersList = () => {
         user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
         user.role.includes(filter.role) &&
         user.group?.includes(filter.group_name)
-      // user.role.includes(filterf.role),
     );
     setFilteredList(filteredUsers.slice(0, limit));
   }, [limit, filter]);
