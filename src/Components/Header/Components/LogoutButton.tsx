@@ -21,7 +21,7 @@ const LogoutButton: React.FC<logoutButtonProps> = ({
     }
     return (
         <button className={styles.btn} onClick={logoutFunc}>
-            <LogoutIcon fill="white" />
+            <LogoutIcon fill="black" />
         </button>
     );
 }
