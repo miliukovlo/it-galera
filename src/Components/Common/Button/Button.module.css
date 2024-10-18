@@ -1,3 +1,8 @@
+.size_s {
+    width: 20%;
+    height: 20%;
+    min-height: 40px;
+}
 .size_m {
     width: 40%;
     height: 20%;

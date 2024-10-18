@@ -5,10 +5,13 @@ import { studentInterface } from '@/Interface/StudentInterface';
 import React, { useState } from 'react';
 import styles from "./StudentsList.module.css"
 import Student from '../Student/Student';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const StudentsList: React.FC = () => {
 
     const [students, setStudents] = useState<studentInterface[]>(initialStudents);
+    const user = useSelector((state: RootState) => state.user.user);
 
     const handleAddStudent = (id: number): void => {
         setStudents(prevStudents =>
@@ -20,7 +23,7 @@ const StudentsList: React.FC = () => {
 
     return (
         <article className={styles.information_block}>
-            <p className={styles.teacher__name}><b>Имя преподавателя:</b> Фамилия Имя Отчество</p>
+            <p className={styles.teacher__name}><b>Имя преподавателя:</b> {user?.fio}</p>
             <ul className={styles.group__list}>
                 {students.map((stud) => {
                     return (

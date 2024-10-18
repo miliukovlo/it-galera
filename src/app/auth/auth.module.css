@@ -4,3 +4,6 @@
     align-items: center;
     flex-direction: column;
 }
+.auth__head_text {
+    font-size: 4vh;
+}

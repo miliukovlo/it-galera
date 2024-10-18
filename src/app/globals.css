@@ -1,15 +1,7 @@
 :root {
-  --background: #ffffff;
+  --background: #eeeeee;
   --foreground: #171717;
-  --secondary-color: #eeeeee;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --secondary-color: #111010;
-  }
+  --secondary-color: #ffffff;
 }
 
 html,
@@ -54,9 +46,3 @@ a {
   transition-duration: 0.5s;
 }
 
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}

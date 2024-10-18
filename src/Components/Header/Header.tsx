@@ -54,32 +54,34 @@ const Header: React.FC<HeaderProps> = ({ type, role }) => {
 
   return (
     <header className={styles.header}>
-      <Image
-        width={80}
-        height={80}
-        className={styles.image}
-        src={logo}
-        alt='Логотип ВШЦТ'
-        priority={true}
-      />
-      {type === "auth" ? null : 
-        <nav className={styles.navContainer}>
-          {user?.role === "teacher" ? 
-            linksTeacher.map((link) => (
-              <Link key={link.id} href={link.href} className={styles.navLink}>
-                <p className={styles.navText}>{link.text}</p>
-              </Link>
-            ))
-            :
-            linksAdmin.map((link) => (
-              <Link key={link.id} href={link.href} className={styles.navLink}>
-                <p className={styles.navText}>{link.text}</p>
-              </Link>
-            ))
-          }
-          <LogoutButton routerFunc={handleExit} dispatch={dispatch}/>
-        </nav>
-      }
+      <div className={styles.container}>
+        <Image
+          width={80}
+          height={80}
+          className={styles.image}
+          src={logo}
+          alt='Логотип ВШЦТ'
+          priority={true}
+        />
+        {type === "auth" ? null : 
+          <nav className={styles.navContainer}>
+            {user?.role === "teacher" ? 
+              linksTeacher.map((link) => (
+                <Link key={link.id} href={link.href} className={styles.navLink}>
+                  <p className={styles.navText}>{link.text}</p>
+                </Link>
+              ))
+              :
+              linksAdmin.map((link) => (
+                <Link key={link.id} href={link.href} className={styles.navLink}>
+                  <p className={styles.navText}>{link.text}</p>
+                </Link>
+              ))
+            }
+            <LogoutButton routerFunc={handleExit} dispatch={dispatch}/>
+          </nav>
+        }
+      </div>
     </header>
   );
 };

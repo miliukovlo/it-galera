@@ -2,14 +2,26 @@
     width: 100%;
     height: 10vh;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.container {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     background: var(--secondary-color);
+    border-radius: 12px;
+    box-shadow: 1px 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 .image {
     border-radius: 8px;
+    margin: 40px;
 }
 .text__header {
     font-size: 3vh;
     color:var(--foreground);
+    margin: 40px;
 }
