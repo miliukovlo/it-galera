@@ -22,7 +22,7 @@ const Input : React.FC<InputProps> = React.memo(({
             placeholder={placeholder}
             value={value}
             onChange={onChange}
-            className={size === "m" ? styles.size_m : styles.size_l}
+            className={size === "m" ? `${styles.input} ${styles.size_m}` : `${styles.input} ${styles.size_m}`}
         />
     );
 })

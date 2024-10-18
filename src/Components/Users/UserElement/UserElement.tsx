@@ -16,15 +16,15 @@ const UserElement: React.FC<UserElementProps> = ({
     role
 }: UserElementProps) => {
     return (
-        <Link href={`/users/${id}`} className={styles.link}>
-            <li className={styles.list__element} key={id}>
+        <li className={styles.list__element} key={id}>
+            <Link href={`/users/${id}`} className={styles.link}>
                 <div className={styles.user__block}>
                     <p className={`${styles.user__information}`}><b>ФИО:</b> {name}</p>
                     <p className={`${styles.user__information}`}><b>Группа:</b> {group}</p>
                     <p className={`${styles.user__information}`}><b>Роль:</b> {role === "student" ? "Студент" : "Преподаватель"}</p>
                 </div>
-            </li>
-        </Link>
+            </Link>
+        </li>
     );
 }
 

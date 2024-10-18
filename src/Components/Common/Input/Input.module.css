@@ -1,18 +1,28 @@
 .size_m {
     width: 40%;
     height: 20%;
-    border: 2px solid var(--foreground);
+    min-height: 40px;
+}
+.size_m:focus {
+    width: calc(40% + 10px);
+    height: calc(20% + 20px);
+}
+.input {
+    margin: 10px;
+    border: 2px solid var(--secondary-color);
     text-indent: 10px;
     border-radius: 8px;
-    min-height: 40px;
-    margin: 10px;
+    transition-duration: 0.6s;
+}
+.input:focus {
+    outline: 0;
 }
 .size_l {
     width: 50%;
     height: 15%;
-    border: 2px solid var(--foreground);
-    text-indent: 10px;
-    border-radius: 8px;
-    margin: 10px;
     min-height: 60px;
+}
+.size_l:focus {
+    width: calc(50% + 10px);
+    height: calc(15% + 20px);
 }

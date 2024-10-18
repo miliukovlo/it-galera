@@ -53,6 +53,7 @@ const Auth : React.FC<AuthProps> = ({
 
     return (
         <main className={`main ${styles.auth__content}`}>
+            <h1 className={styles.auth__head_text}>Вход</h1>
             <Input
                 type='text'
                 value={login}
@@ -69,7 +70,7 @@ const Auth : React.FC<AuthProps> = ({
             />
             <Button
                 text='Войти'
-                size="m"
+                size="s"
                 onClick={handleLogin}
             />
             <p className={error ? "error__text" : "error__text_hidden"}>Вы неправильно ввели логин/пароль!</p>
