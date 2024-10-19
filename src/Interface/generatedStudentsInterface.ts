@@ -1,10 +1,12 @@
 export interface generatedStudentsInterface {
     _id: string,
-    index: number,
+    index?: number,
     role: string,
     picture?: string,
     name: string,
-    lessons: lessonsInterface[]
+    email?: string,
+    password?: string,
+    lessons?: lessonsInterface[]
     group?: string
 }
 
