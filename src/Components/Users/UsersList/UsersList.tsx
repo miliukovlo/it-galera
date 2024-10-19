@@ -6,31 +6,74 @@ import styles from "./UsersList.module.css";
 import { useInView } from "react-intersection-observer";
 import { generatedStudentsInterface } from "@/Interface/generatedStudentsInterface";
 import { generatedStudents } from "@/data/GeneratedStudents";
+import { selectData } from "@/data/selectData";
+import { selectDataInterface } from "@/Interface/selectDataInterface";
+import { filterInterface } from "@/Interface/filterInterface";
 import UserElement from "../UserElement/UserElement";
+import { Select } from "@/Components/Common/Select/Select";
 
 const users: generatedStudentsInterface[] = generatedStudents;
 
+const select: selectDataInterface[] = selectData;
+
 const UsersList = () => {
-  const [filterValue, setFilterValue] = useState<string>("");
   const [limit, setLimit] = useState<number>(10);
-  const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>([]);
-  
+  const [filteredList, setFilteredList] = useState<
+    generatedStudentsInterface[]
+  >([]);
+
+  const [filter, setFilter] = useState<filterInterface>({
+    name: "",
+    campus: "",
+    group_name: "",
+    role: "",
+    department: "",
+  });
+
   const [ref, inView] = useInView({ threshold: 1 });
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterValue(e.target.value);
+    if (e) {
+      //Проверка на null
+      setFilter((prevFilter) => ({ ...prevFilter, name: e.target.value }));
+    }
   };
 
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e) {
+      const id = e.target.name;
+      if (id === "Группа") {
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          group_name: e.target.value,
+        }));
+      }
+      if (id === "Роль") {
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          role:
+            e.target.value === "Студент"
+              ? "student"
+              : e.target.value === "Преподаватель"
+              ? "teacher"
+              : "admin",
+        }));
+      }
+    }
+  };
   useEffect(() => {
-    const filteredUsers = users.filter((user) => 
-      user.name.toLowerCase().includes(filterValue.toLowerCase())
+    const filteredUsers = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+        user.role.includes(filter.role) &&
+        user.group?.includes(filter.group_name)
     );
     setFilteredList(filteredUsers.slice(0, limit));
-  }, [filterValue, limit]);
+  }, [limit, filter]);
 
   useEffect(() => {
     if (inView) {
-      setLimit((prevLimit) => prevLimit + 10); 
+      setLimit((prevLimit) => prevLimit + 10);
     }
   }, [inView]);
 
@@ -39,10 +82,20 @@ const UsersList = () => {
       <Input
         type='text'
         size='l'
-        value={filterValue}
+        value={filter.name}
         onChange={handleFilter}
         placeholder='Поиск...'
       />
+      <div className={styles.filterContainer}>
+        {select.map((select) => (
+          <Select
+            key={select.defaultText}
+            onChange={handleSelect}
+            {...select}
+          />
+        ))}
+      </div>
+
       <ul className={styles.users__list}>
         {filteredList.map((user) => (
           <UserElement
