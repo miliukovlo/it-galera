@@ -4,8 +4,8 @@
 
 .filterSelect select {
     height: 35px;
-    width: 150px;
-    border: 2px solid var(--foreground);
+    width: 130px;
+    border: none;
     -webkit-appearance: none;
     appearance: none;
     outline: none;
