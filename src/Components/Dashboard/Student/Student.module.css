@@ -6,12 +6,9 @@
     align-items: center;
     justify-content: space-around;
     border-radius: 12px;
-}
-.group__even {
-    background-color: var(--background);
-}
-.group__odd {
     background-color: var(--secondary-color);
+    margin-top: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
 }
 
 .stud__info_list {
@@ -37,7 +34,8 @@
     align-items: center;
     justify-content: center;
     transition-duration: 0.7s;
-    color: var(--background)
+    font-size: 1.2vh;
+    color: var(--background);
 }
 .stud__here {
     background-color: rgb(125, 175, 138);

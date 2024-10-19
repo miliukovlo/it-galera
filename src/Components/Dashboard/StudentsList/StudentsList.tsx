@@ -8,7 +8,7 @@ import Student from '../Student/Student';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 
-const StudentsList: React.FC = () => {
+const StudentsList: React.FC = ({}) => {
 
     const [students, setStudents] = useState<studentInterface[]>(initialStudents);
     const user = useSelector((state: RootState) => state.user.user);

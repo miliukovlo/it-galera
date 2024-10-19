@@ -1,9 +1,4 @@
-interface loginInterface {
-    email: string,
-    password: string,
-    role: 'teacher' | "admin",
-    fio: string
-}
+import { loginInterface } from "@/Interface/loginInterface";
 
 export const loginData : loginInterface[] = [
     {
