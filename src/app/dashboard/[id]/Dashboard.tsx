@@ -15,7 +15,10 @@ const Dashboard : React.FC = () => {
     }
     return (
         <main className={`main ${styles.content}`}>
-            <StudentsList/>
+            <StudentsList 
+                group={lesson.group}
+                title={lesson.title}
+            />
             <QRCode/>
         </main>
     );

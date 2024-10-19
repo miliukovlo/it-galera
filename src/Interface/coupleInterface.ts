@@ -4,6 +4,6 @@ export interface coupleInterface {
     time: string,
     group: string,
     id: number,
-    type: "Лекция" | "Практика" | "Лабораторная работа",
+    type: "Лекция" | "Практика" | "Лаб. работа",
     cabinet: number
 }

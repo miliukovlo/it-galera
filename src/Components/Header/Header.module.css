@@ -40,16 +40,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.4vh;
   flex-direction: column;
 }
 
-.navLink:hover{
+.navText {
+  font-size: 1.4vh;
+}
+
+.navText:hover{
   color: var(--foreground);
   transition: all 0.3s;
 }
 
-.navLink::after{
+.navText::after{
   margin-top: 6px;
   content: "";
   height: 2px;
@@ -61,6 +64,6 @@
   pointer-events: none;
 }
 
-.navLink:hover::after{
+.navText:hover::after{
   opacity: 1;
 }

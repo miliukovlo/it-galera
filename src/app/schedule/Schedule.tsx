@@ -7,6 +7,7 @@ import Lesson from '@/Components/Schedule/Lesson';
 const Schedule = () => {
     return (
         <article className={styles.content}>
+            <h1 className={styles.header__text}>Расписание</h1>
             {
                 schedule.map((lesson: coupleInterface) => {
                     return (

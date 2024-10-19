@@ -4,7 +4,7 @@
     color: var(--foreground);
 }
 
-.information_block {
+.information__block {
     height: 100%;
     width: 70%;
     display: flex;
@@ -23,4 +23,9 @@
     flex-direction: column;
     justify-content: center;
     list-style: none;
+}
+.about__lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
