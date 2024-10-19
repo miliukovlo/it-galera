@@ -2,25 +2,28 @@ import React from 'react';
 import styles from "./schedule.module.css";
 import { schedule } from '@/data/coupleData';
 import { coupleInterface } from '@/Interface/coupleInterface';
+import Lesson from '@/Components/Schedule/Lesson';
 
 const Schedule = () => {
     return (
-        <div className={styles.content}>
+        <article className={styles.content}>
             {
                 schedule.map((lesson: coupleInterface) => {
                     return (
-                        <div className={styles.lesson_element} key={lesson.id}>
-                            <h3>{lesson.title}</h3>
-                            <p>{lesson.number}</p>
-                            <p>{lesson.time}</p>
-                            <p>{lesson.group}</p>
-                            <p>{lesson.type}</p>
-                            <p>{lesson.cabinet}</p>
-                        </div>
+                        <Lesson
+                            key={lesson.id}
+                            id={lesson.id}
+                            title={lesson.title}
+                            type={lesson.type}
+                            time={lesson.time}
+                            cabinet={lesson.cabinet}
+                            group={lesson.group}
+                            number={lesson.number}
+                        />
                     )
                 })
             }
-        </div>
+        </article>
     );
 }
 

@@ -25,7 +25,7 @@ export const schedule : coupleInterface[] = [
         time: "11:30 - 13:05",
         group: "СМАРТб-22-1",
         id: 3,
-        type: "Лабораторная работа",
+        type: "Лаб. работа",
         cabinet: 506
     },
     {
