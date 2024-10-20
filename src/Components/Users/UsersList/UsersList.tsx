@@ -12,7 +12,6 @@ import { filterInterface } from "@/Interface/filterInterface";
 import UserElement from "../UserElement/UserElement";
 import { Select } from "@/Components/Common/Select/Select";
 import SearchInput from "@/Components/Common/SearchInput/SearchInput";
-import Button from "@/Components/Common/Button/Button";
 
 const users: generatedStudentsInterface[] = generatedStudents;
 
@@ -32,7 +31,17 @@ const UsersList = () => {
     department: "",
   });
 
-  const test = () => console.log("Test");
+  const handleFind = () => console.log("got data from server");
+
+  const handleResetFilter = () => {
+    setFilter(() => ({
+      name: "",
+      campus: "",
+      group_name: "",
+      role: "",
+      department: "",
+    }));
+  };
 
   const [ref, inView] = useInView({ threshold: 1 });
 
@@ -85,8 +94,8 @@ const UsersList = () => {
     <article className={styles.content}>
       <SearchInput
         onChange={handleFilter}
-        onFind={test}
-        onResetFilter={test}
+        onFind={handleFind}
+        onResetFilter={handleResetFilter}
         value={filter.name}
       />
       <div className={styles.filterContainer}>
