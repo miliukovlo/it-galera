@@ -1,0 +1,48 @@
+.searchInputContainer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: space-around;
+    width: 40%;
+    height: 40px;
+}
+
+.searchInput {
+    height: 100%;
+    flex-basis: 74%;
+    border: 2px solid var(--secondary-color);
+    text-indent: 10px;
+    border-radius: 8px;
+    transition-duration: 0.6s;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.resetFilterButton {
+    position: absolute;
+    left: 53%;
+
+}
+
+.findButtonContainer {
+    height: 100%;
+    flex: 1;
+    flex-basis: 40px;
+}
+
+.findButton {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.findButton:hover {
+    background-color: var(--foreground);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+

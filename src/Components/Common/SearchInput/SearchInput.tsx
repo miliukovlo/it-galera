@@ -1,5 +1,5 @@
 import React from "react";
-import { styles } from "./SearchInput.module.css";
+import styles from "./SearchInput.module.css";
 
 interface SearchInputProps {
   value: string;
@@ -26,7 +26,9 @@ const SearchInput = ({
       <button onClick={onResetFilter} className={styles.resetFilterButton}>
         Очистить
       </button>
-      <button className={styles.findButton}></button>
+      <div className={styles.findButtonContainer}>
+        <button className={styles.findButton}>Найти</button>
+      </div>
     </div>
   );
 };

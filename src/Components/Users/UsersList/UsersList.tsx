@@ -11,6 +11,8 @@ import { selectDataInterface } from "@/Interface/selectDataInterface";
 import { filterInterface } from "@/Interface/filterInterface";
 import UserElement from "../UserElement/UserElement";
 import { Select } from "@/Components/Common/Select/Select";
+import SearchInput from "@/Components/Common/SearchInput/SearchInput";
+import Button from "@/Components/Common/Button/Button";
 
 const users: generatedStudentsInterface[] = generatedStudents;
 
@@ -29,6 +31,8 @@ const UsersList = () => {
     role: "",
     department: "",
   });
+
+  const test = () => console.log("Test");
 
   const [ref, inView] = useInView({ threshold: 1 });
 
@@ -79,12 +83,11 @@ const UsersList = () => {
 
   return (
     <article className={styles.content}>
-      <Input
-        type='text'
-        size='l'
-        value={filter.name}
+      <SearchInput
         onChange={handleFilter}
-        placeholder='Поиск...'
+        onFind={test}
+        onResetFilter={test}
+        value={filter.name}
       />
       <div className={styles.filterContainer}>
         {select.map((select) => (

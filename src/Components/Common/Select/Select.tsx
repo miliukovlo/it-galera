@@ -16,7 +16,7 @@ export const Select: React.FC<SelectProps> = ({
   return (
     <div className={styles.filterSelect}>
       <select name={defaultText} onChange={onChange} defaultValue={""}>
-        <option value={""} color='gray' disabled hidden>
+        <option value={""} color='gray' hidden>
           {defaultText}
         </option>
         {options.map((option) => (
