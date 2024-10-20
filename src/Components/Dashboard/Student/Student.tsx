@@ -20,11 +20,7 @@ const Student : React.FC<StudentProps> = ({
     return (
         <li key={id} className={styles.list__element}>
             <div 
-            className={
-                id % 2 == 0 ? 
-                `${styles.group__element} ${styles.group__even}` 
-                : `${styles.group__element} ${styles.group__odd}`
-            } 
+            className={styles.group__element} 
             >
                 <ul className={styles.stud__info_list}>
                     <li className={styles.stud__group}>Группа: {group}</li>

@@ -15,10 +15,12 @@
 }
 .button {
     border: 2px solid var(--foreground);
-    text-indent: 15px;
     border-radius: 8px;
     margin: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
     transition-duration: 0.6s;
 }
