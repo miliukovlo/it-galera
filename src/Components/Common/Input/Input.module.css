@@ -6,6 +6,7 @@
 .input {
     margin: 10px;
     border: 2px solid var(--secondary-color);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
     text-indent: 10px;
     border-radius: 8px;
     transition-duration: 0.6s;
