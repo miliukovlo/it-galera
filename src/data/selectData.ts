@@ -6,40 +6,40 @@ export const selectData:selectDataInterface[]= [
     {
       id: 1,
       options: [
-        { text: "Институт"},
-        { text: "ВШЦТ" },
-        { text: "ИГИН" },
-        { text: "СТРОИН" },
+        { text: "Институт", value: ''},
+        { text: "ВШЦТ" , value: "ВШЦТ"},
+        { text: "ИГИН", value: "ИГИН" },
+        { text: "СТРОИН", value: "СТРОИН" },
       ],
-      selectName: "Институт"
+      selectName: "campus"
     },
     {
       id: 2,
       options: [
-        { text: "Кафедра"},
-        { text: "Математики" },
-        { text: "Истории" },
-        { text: "Ин. языков" },
+        { text: "Кафедра", value: ''},
+        { text: "Математики", value: "Математики" },
+        { text: "Истории", value: "Истории" },
+        { text: "Ин. языков", value: "Ин. языков" },
       ],
-      selectName: "Кафедра"
+      selectName: "department"
     },
     {
       id: 3,
       options: [
-        { text: "Группа"},
-        { text: "СМАРТб-22-1" },
-        { text: "ИИПб-23-1" },
-        { text: "ИИПб-24-1" },
+        { text: "Группа", value: ''},
+        { text: "СМАРТб-22-1", value: "СМАРТб-22-1" },
+        { text: "ИИПб-23-1", value: "ИИПб-23-1" },
+        { text: "ИИПб-24-1", value: "ИИПб-24-1" },
       ],
-      selectName: "Группа"
+      selectName: "group_name"
     },
     {
       id: 4,
       options: [
-        { text: "Роль"},
-        { text: "Студент" },
-        { text: "Преподаватель" },
+        { text: "Роль", value: ''},
+        { text: "Студент", value: "student" },
+        { text: "Преподаватель", value: "teacher" },
       ],
-      selectName: "Роль"
+      selectName: "role"
     },
   ];
