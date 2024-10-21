@@ -71,6 +71,9 @@ const UsersList = () => {
             onChange={handleFilterChange}
             selectName={select.selectName}
             options={select.options}
+            value={select.selectName === 'campus' ? filter.campus :
+                  select.selectName === 'group_name' ? filter.group_name : 
+                  filter.role} 
           />
         ))}
       </div>
