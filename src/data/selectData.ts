@@ -4,35 +4,42 @@ import { selectDataInterface } from '@/Interface/selectDataInterface';
 
 export const selectData:selectDataInterface[]= [
     {
+      id: 1,
       options: [
+        { text: "Институт"},
         { text: "ВШЦТ" },
         { text: "ИГИН" },
         { text: "СТРОИН" },
       ],
-      defaultText: "Институт",
+      selectName: "Институт"
     },
     {
+      id: 2,
       options: [
+        { text: "Кафедра"},
         { text: "Математики" },
         { text: "Истории" },
         { text: "Ин. языков" },
       ],
-      defaultText: "Кафедра",
+      selectName: "Кафедра"
     },
     {
+      id: 3,
       options: [
+        { text: "Группа"},
         { text: "СМАРТб-22-1" },
         { text: "ИИПб-23-1" },
         { text: "ИИПб-24-1" },
       ],
-      defaultText: "Группа",
+      selectName: "Группа"
     },
     {
+      id: 4,
       options: [
+        { text: "Роль"},
         { text: "Студент" },
         { text: "Преподаватель" },
-        { text: "Администратор" },
       ],
-      defaultText: "Роль",
+      selectName: "Роль"
     },
   ];
