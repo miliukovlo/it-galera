@@ -20,9 +20,12 @@ const UsersList = () => {
     department: "",
   });
   const handleResetFilter = () => {
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      name: "", 
+    setFilter(() => ({
+      name: "",
+      campus: "",
+      group_name: "",
+      role: "",
+      department: "", 
     }));
   };
   
@@ -66,7 +69,8 @@ const UsersList = () => {
           <Select
             key={select.id}
             onChange={handleFilterChange}
-            {...select}
+            selectName={select.selectName}
+            options={select.options}
           />
         ))}
       </div>

@@ -6,4 +6,5 @@ export interface selectDataInterface {
 
 export interface optionsInterface {
     text: string,
+    value: string
 }

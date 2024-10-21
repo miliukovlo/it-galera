@@ -5,7 +5,7 @@ import { optionsInterface } from "@/Interface/selectDataInterface";
 interface SelectProps {
   options: Array<optionsInterface>;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectName: string
+  selectName: string,
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -17,7 +17,7 @@ export const Select: React.FC<SelectProps> = ({
     <div className={styles.filterSelect}>
       <select name={selectName} onChange={onChange}>
         {options.map((option) => (
-          <option key={option.text} value={option.text}>
+          <option key={option.text} value={option.value}>
             {option.text}
           </option>
         ))}
