@@ -73,7 +73,8 @@ const UsersList = () => {
             options={select.options}
             value={select.selectName === 'campus' ? filter.campus :
                   select.selectName === 'group_name' ? filter.group_name : 
-                  filter.role} 
+                  select.selectName === "role" ? filter.role :
+                  filter.department} 
           />
         ))}
       </div>
