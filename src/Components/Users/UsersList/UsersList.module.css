@@ -21,12 +21,12 @@
 }
 
 .filterContainer {
-    width:  50%;
+    width:  40%;
     height: 60px;
-    border: 2px solid var(--foreground);
+    border: none;
     border-radius: 8px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     
 }
