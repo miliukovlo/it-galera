@@ -19,6 +19,13 @@ const UsersList = () => {
     role: "",
     department: "",
   });
+  const handleResetFilter = () => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      name: "", 
+    }));
+  };
+  
 
   const [ref, inView] = useInView({ threshold: 1 });
 
@@ -51,6 +58,8 @@ const UsersList = () => {
       <SearchInput
         onChange={handleFilterChange}
         value={filter.name}
+        name={"name"}
+        onResetFilter={handleResetFilter}
       />
       <div className={styles.filterContainer}>
         {selectData.map((select) => (
