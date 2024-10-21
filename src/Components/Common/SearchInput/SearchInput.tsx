@@ -1,18 +1,19 @@
 import React from "react";
 import styles from "./SearchInput.module.css";
+import CrossIcon from "@/Components/Common/Svg/Icons/CrossIcon/CrossIcon";
 
 interface SearchInputProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onResetFilter: () => void;
-  onFind: () => void;
+  handleResetFilter: () => void;
+  handleFind: () => void;
 }
 
 const SearchInput = ({
   value,
   onChange,
-  onResetFilter,
-  onFind,
+  handleResetFilter,
+  handleFind,
 }: SearchInputProps) => {
   return (
     <div className={styles.searchInputContainer}>
@@ -23,11 +24,13 @@ const SearchInput = ({
         onChange={onChange}
         className={styles.searchInput}
       />
-      <button onClick={onResetFilter} className={styles.resetFilterButton}>
-        Очистить
+      <button onClick={handleResetFilter} className={styles.resetFilterButton}>
+        <CrossIcon />
       </button>
       <div className={styles.findButtonContainer}>
-        <button className={styles.findButton}>Найти</button>
+        <button onClick={handleFind} className={styles.findButton}>
+          Найти
+        </button>
       </div>
     </div>
   );

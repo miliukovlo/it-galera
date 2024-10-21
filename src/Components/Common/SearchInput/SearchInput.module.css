@@ -20,9 +20,14 @@
 
 .resetFilterButton {
     position: absolute;
-    left: 53%;
-
+    padding: 3px;
+    left: 57%;
+    background-color: var(--secondary-color);
+    border: none;
+    cursor: pointer;
 }
+
+
 
 .findButtonContainer {
     height: 100%;

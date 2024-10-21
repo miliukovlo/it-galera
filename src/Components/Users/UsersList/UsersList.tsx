@@ -1,6 +1,5 @@
 "use client";
 
-import Input from "@/Components/Common/Input/Input";
 import React, { useEffect, useState } from "react";
 import styles from "./UsersList.module.css";
 import { useInView } from "react-intersection-observer";
@@ -69,7 +68,7 @@ const UsersList = () => {
               ? "student"
               : e.target.value === "Преподаватель"
               ? "teacher"
-              : "admin",
+              : "",
         }));
       }
     }
@@ -94,8 +93,8 @@ const UsersList = () => {
     <article className={styles.content}>
       <SearchInput
         onChange={handleFilter}
-        onFind={handleFind}
-        onResetFilter={handleResetFilter}
+        handleFind={handleFind}
+        handleResetFilter={handleResetFilter}
         value={filter.name}
       />
       <div className={styles.filterContainer}>

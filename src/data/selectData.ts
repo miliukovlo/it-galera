@@ -31,7 +31,7 @@ export const selectData:selectDataInterface[]= [
       options: [
         { text: "Студент" },
         { text: "Преподаватель" },
-        { text: "Администратор" },
+        
       ],
       defaultText: "Роль",
     },
