@@ -1,6 +1,7 @@
 export interface selectDataInterface {
     options: optionsInterface[],
-    defaultText: string,
+    id: number,
+    selectName: string
 }
 
 export interface optionsInterface {
