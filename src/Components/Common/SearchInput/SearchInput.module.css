@@ -19,9 +19,23 @@
 }
 
 .resetFilterButton {
+    transition: 0.4s;
     position: absolute;
-    left: 53%;
+    left: calc(57% - 5px);
+    background-color: transparent;
+    border: none;
+    border-radius: 30%;
+    cursor: pointer;
+}
 
+.resetFilterButton:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 50%;
+}
+
+.resetFilterButton:active {
+    background-color: rgba(128, 128, 128, 0.5);
+    
 }
 
 .findButtonContainer {

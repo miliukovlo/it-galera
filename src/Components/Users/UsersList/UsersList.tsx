@@ -1,17 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useInView } from 'react-intersection-observer';
-import styles from './UsersList.module.css'; 
-import SearchInput from '@/Components/Common/SearchInput/SearchInput';
-import { Select } from '@/Components/Common/Select/Select';
-import UserElement from '../UserElement/UserElement';
-import { generatedStudents } from '@/data/GeneratedStudents';
-import { generatedStudentsInterface } from '@/Interface/generatedStudentsInterface';
-import { filterInterface } from '@/Interface/filterInterface';
-import { selectData } from '@/data/selectData';
+import { useState, useEffect, useCallback } from "react";
+import { useInView } from "react-intersection-observer";
+import styles from "./UsersList.module.css";
+import SearchInput from "@/Components/Common/SearchInput/SearchInput";
+import { Select } from "@/Components/Common/Select/Select";
+import UserElement from "../UserElement/UserElement";
+import { generatedStudents } from "@/data/GeneratedStudents";
+import { generatedStudentsInterface } from "@/Interface/generatedStudentsInterface";
+import { filterInterface } from "@/Interface/filterInterface";
+import { valueMapInterface } from "@/Interface/selectDataInterface";
+import { selectData } from "@/data/selectData";
 
 const UsersList = () => {
   const [limit, setLimit] = useState<number>(10);
-  const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>([]);
+  const [filteredList, setFilteredList] = useState<
+    generatedStudentsInterface[]
+  >([]);
   const [filter, setFilter] = useState<filterInterface>({
     name: "",
     campus: "",
@@ -25,20 +28,29 @@ const UsersList = () => {
       campus: "",
       group_name: "",
       role: "",
-      department: "", 
+      department: "",
     }));
   };
-  
+
+  const valueMap: valueMapInterface = {
+    campus: filter.campus,
+    group_name: filter.group_name,
+    role: filter.role,
+    department: filter.department,
+  };
 
   const [ref, inView] = useInView({ threshold: 1 });
 
-  const handleFilterChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFilter((prevFilter) => ({
-      ...prevFilter,
-      [name]: value,
-    }));
-  },[]);
+  const handleFilterChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFilter((prevFilter) => ({
+        ...prevFilter,
+        [name]: value,
+      }));
+    },
+    []
+  );
 
   useEffect(() => {
     const filteredUsers = generatedStudents.filter(
@@ -71,10 +83,7 @@ const UsersList = () => {
             onChange={handleFilterChange}
             selectName={select.selectName}
             options={select.options}
-            value={select.selectName === 'campus' ? filter.campus :
-                  select.selectName === 'group_name' ? filter.group_name : 
-                  select.selectName === "role" ? filter.role :
-                  filter.department} 
+            value={valueMap[select.selectName as keyof typeof valueMap]}
           />
         ))}
       </div>
@@ -95,4 +104,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList
+export default UsersList;

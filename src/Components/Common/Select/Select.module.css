@@ -4,9 +4,10 @@
 
 .filterSelect select {
     height: 35px;
-    width: 130px;
+    width: 140px;
     border: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     outline: none;
     padding-left: 5px;
