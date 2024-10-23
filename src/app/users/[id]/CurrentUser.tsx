@@ -50,7 +50,7 @@ const CurrentUser: React.FC = () => {
             setModal((prevModal) => ({ ...prevModal, isOpen: false }));
           }}
         />
-        {GetUser.lessons.map((lesson) => {
+        {GetUser.lessons?.map((lesson) => {
           return (
             <div
               onClick={() => {
