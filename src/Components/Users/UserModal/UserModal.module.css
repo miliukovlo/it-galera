@@ -58,6 +58,42 @@
     align-items: center;
     flex-direction: row;
     border-radius: 8px;
+    background-color: var(--background);
     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
 }
 
+.lessonsTableContainer {
+    display: grid;
+    overflow-y: scroll;
+    margin: 25px;
+    padding-top: 25px;
+    width: 80%;
+    height: 90%;
+    justify-content: center;
+    background-color: var(--background);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    grid-template-columns: repeat(5, 150px);
+    grid-auto-rows: 100px;
+    gap: 25px;
+}
+
+.closeModalButton {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 30%;
+    transition: 0.4s;
+}
+
+.closeModalButton:hover {
+    background-color: var(--background);
+    border-radius: 50%;
+}
+
+.closeModalButton:active {
+    background-color: rgba(128, 128, 128, 0.5);
+}

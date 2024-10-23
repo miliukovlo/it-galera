@@ -1,4 +1,7 @@
 import styles from "./UserModal.module.css";
+import { GetCurrentSubject } from "@/Hooks/GetCurrentSubject";
+import LessonItem from "./LessonItem/LessonItem";
+import CrossIcon from "@/Components/Common/Svg/Icons/CrossIcon/CrossIcon";
 
 interface userModalInterface {
   isOpen: boolean;
@@ -7,12 +10,22 @@ interface userModalInterface {
 }
 
 const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
+  const GetSubject = GetCurrentSubject(subject_name);
+
   return (
     <div className={isOpen ? styles.userModalContainer : styles.hideModal}>
       <div onClick={onClose} className={styles.outerModal}></div>
       <div className={styles.userModalWrapper}>
         <div className={styles.useModalContent}>
+          <button onClick={onClose} className={styles.closeModalButton}>
+            <CrossIcon width='5em' height='5em' />
+          </button>
           <div className={styles.infoBlock}>{subject_name}</div>
+          <div className={styles.lessonsTableContainer}>
+            {GetSubject?.lessons.map((lesson) => (
+              <LessonItem {...lesson} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

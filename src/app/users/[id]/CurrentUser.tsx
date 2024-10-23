@@ -6,7 +6,6 @@ import React from "react";
 import styles from "./CurrentUser.module.css";
 import Circle from "@/Components/Common/Circle/Circle";
 import UserModal from "@/Components/Users/UserModal/UserModal";
-import { modalPropTypes } from "rsuite/esm/internals/Overlay/Modal";
 
 const CurrentUser: React.FC = () => {
   const { id } = useParams();
@@ -15,7 +14,6 @@ const CurrentUser: React.FC = () => {
     notFound();
   }
   const GetUser = GetCurrentUser(userId);
-
   if (!GetUser) {
     notFound();
   }
@@ -41,7 +39,7 @@ const CurrentUser: React.FC = () => {
         </p>
         <p className={styles.information__text}>
           <b>Роль:</b>
-          {GetUser.role === "student" ? "Студент" : "Преподаватель"}
+          {GetUser.role === "student" ? " Студент" : " Преподаватель"}
         </p>
       </div>
       <div className={styles.lessons__block}>
