@@ -24,6 +24,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.lesson:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .lessons__block {
