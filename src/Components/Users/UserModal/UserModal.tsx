@@ -4,32 +4,32 @@ import LessonItem from "./LessonItem/LessonItem";
 import CrossIcon from "@/Components/Common/Svg/Icons/CrossIcon/CrossIcon";
 
 interface userModalInterface {
-  isOpen: boolean;
-  onClose: () => void;
-  subject_name: string;
+	isOpen: boolean;
+	onClose: () => void;
+	subject_name: string;
 }
 
 const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
-  const GetSubject = GetCurrentSubject(subject_name);
+	const GetSubject = GetCurrentSubject(subject_name);
 
-  return (
-    <div className={isOpen ? styles.userModalContainer : styles.hideModal}>
-      <div onClick={onClose} className={styles.outerModal}></div>
-      <div className={styles.userModalWrapper}>
-        <div className={styles.useModalContent}>
-          <button onClick={onClose} className={styles.closeModalButton}>
-            <CrossIcon width='5em' height='5em' />
-          </button>
-          <div className={styles.infoBlock}>{subject_name}</div>
-          <div className={styles.lessonsTableContainer}>
-            {GetSubject?.lessons.map((lesson) => (
-              <LessonItem {...lesson} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className={isOpen ? styles.userModalContainer : styles.hideModal}>
+			<div onClick={onClose} className={styles.outerModal}></div>
+			<div className={styles.userModalWrapper}>
+				<div className={styles.useModalContent}>
+					<button onClick={onClose} className={styles.closeModalButton}>
+						<CrossIcon width="5em" height="5em" />
+					</button>
+					<div className={styles.infoBlock}>{subject_name}</div>
+					<div className={styles.lessonsTableContainer}>
+						{GetSubject?.lessons.map(lesson => (
+							<LessonItem {...lesson} />
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default UserModal;

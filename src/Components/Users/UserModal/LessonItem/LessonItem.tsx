@@ -7,14 +7,20 @@ interface LessonItemInterface {
   status: string;
 }
 
+type Status = "Присутствовал" | "Отсутствовал" | "Уважительная" | "Болел";
+
+const statusColors = {
+  Присутствовал: { backgroundColor: "rgb(171, 210, 181)" },
+  Отсутствовал: { backgroundColor: "rgb(217, 161, 165)" },
+  Уважительная: { backgroundColor: "rgb(144, 146, 206)" },
+  Болел: { backgroundColor: "rgb(217, 204, 161)" },
+};
+
 const LessonItem = ({ date, lesson_type, status }: LessonItemInterface) => {
   return (
     <div
-      className={
-        status === "Присутствовал"
-          ? `${styles.lessonTableItem} ${styles.attend}`
-          : `${styles.lessonTableItem} ${styles.absent}`
-      }>
+      style={statusColors[status as Status]}
+      className={styles.lessonTableItem}>
       <p>{date}</p>
       <p>{lesson_type}</p>
       <p>{status}</p>

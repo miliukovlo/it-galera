@@ -64,7 +64,7 @@
 
 .lessonsTableContainer {
     display: grid;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 25px;
     padding-top: 25px;
     width: 80%;

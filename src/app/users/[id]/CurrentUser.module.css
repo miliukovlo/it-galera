@@ -6,6 +6,8 @@
     align-items: center;
     justify-content: space-around;
 }
+
+
 .information__block, .lesson {
     width: 80%;
     height: 30%;
@@ -13,12 +15,18 @@
     border-radius: 16px;
     margin-top: 40px;
     margin-bottom: 40px;
+    
     display: flex;
     align-items: center;
     justify-content: space-around;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     background-color: var(--secondary-color);
 }
+
+.information__block {
+    padding-left: 100px;
+}
+
 .lesson {
     width: 100%;
     display: flex;
@@ -51,4 +59,22 @@
 .progress__text {
     margin-right: 15px;
     font-size:2vh;
+}
+
+.temp {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    height: 30%;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    /* padding-left: 115px; */
+}
+
+.scrollBlock{
+    position: fixed;
+    overflow: hidden;
 }

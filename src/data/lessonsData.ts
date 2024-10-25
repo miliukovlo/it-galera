@@ -7,12 +7,12 @@ export const lessonsData:lessonsDataInterface[] = [
       lessons: [
         {
           date: "10.05.2024",
-          status: "Отсутствовал",
+          status: "Уважительная",
           lesson_type: "Лекция"
         },
         {
           date: "30.06.2024",
-          status: "Присутствовал",
+          status: "Болел",
           lesson_type: "Лабораторная"
         },
         {
