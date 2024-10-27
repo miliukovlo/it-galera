@@ -23,7 +23,12 @@ const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
 					<div className={styles.infoBlock}>{subject_name}</div>
 					<div className={styles.lessonsTableContainer}>
 						{GetSubject?.lessons.map(lesson => (
-							<LessonItem {...lesson} />
+							<LessonItem 
+								key={lesson.id}
+								date={lesson.date}
+								status={lesson.status}
+								lesson_type={lesson.lesson_type}
+							/>
 						))}
 					</div>
 				</div>

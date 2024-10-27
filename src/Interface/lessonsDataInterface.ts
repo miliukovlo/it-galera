@@ -6,6 +6,7 @@ export interface lessonsDataInterface {
 
 interface lessonsInterface {
     date: string,
-    status: string,
-    lesson_type: string,
+    status: "Уважительная" | "Болел" | "Присутствовал" | "Отсутствовал",
+    lesson_type: "Лекция" | "Лабораторная" | "Практика",
+    id: number
 }
