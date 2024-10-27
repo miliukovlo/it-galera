@@ -14,7 +14,6 @@ const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
 
 	return (
 		<div className={isOpen ? styles.userModalContainer : styles.hideModal}>
-			<div onClick={onClose} className={styles.outerModal}></div>
 			<div className={styles.userModalWrapper}>
 				<div className={styles.useModalContent}>
 					<button onClick={onClose} className={styles.closeModalButton}>
