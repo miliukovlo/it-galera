@@ -1,0 +1,10 @@
+.filterContainer {
+    width:  40%;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}

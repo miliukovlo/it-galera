@@ -5,45 +5,33 @@
     width: 100%;
     height: 100%;
     background-color: rgba(117, 117, 117, 0.75);
-    overflow: hidden;
-    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
     backdrop-filter: blur(5px);
+    cursor: pointer;
 }
 
 .userModalWrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100%;
+    width: 80vw;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.useModalContent {
+.userModalContent {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
-    width: 80%;
-    height: 700px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    padding: 40px 20px 20px 20px;
-    z-index: 999;
-}
-
-.outerModal {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background-color: transparent;
-    z-index: 2;
+    border-radius: 8px;
+    background-color: #ffffff;
+    z-index: 999;
+    cursor: default;
 }
 
 .hideModal {
@@ -66,8 +54,7 @@
     display: grid;
     overflow-y: auto;
     margin: 25px;
-    padding-top: 25px;
-    width: 80%;
+    padding: 10px;
     height: 90%;
     justify-content: center;
     background-color: var(--background);
@@ -78,6 +65,24 @@
     gap: 25px;
 }
 
+.noLessonsTableContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+.noLessonsContent {
+    background-color: var(--background);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    width: 75%;
+    height: 25%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .closeModalButton {
     position: absolute;
     left: 10px;
@@ -96,4 +101,9 @@
 
 .closeModalButton:active {
     background-color: rgba(128, 128, 128, 0.5);
+}
+.infoHeaderText {
+    font-size: 2vh;
+    width: 100%;
+    text-align: center;
 }

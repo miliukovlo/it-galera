@@ -4,9 +4,9 @@ import { GetCurrentUser } from "@/Hooks/GetCurrentUser";
 import { notFound, useParams } from "next/navigation";
 import React from "react";
 import styles from "./CurrentUser.module.css";
-import Circle from "@/Components/Common/Circle/Circle";
-import UserModal from "@/Components/Users/UserModal/UserModal";
-import { Progress } from "rsuite";
+import Name from "@/Components/Users/[id]/Name/Name";
+import ProgressBlock from "@/Components/Users/[id]/ProgressBlock/ProgressBlock";
+import LessonsList from "@/Components/Users/[id]/LessonsList/LessonsList";
 
 const CurrentUser: React.FC = () => {
 	const { id } = useParams();
@@ -19,75 +19,17 @@ const CurrentUser: React.FC = () => {
 		notFound();
 	}
 
-	interface modalInterface {
-		item: string;
-		isOpen: boolean;
-	}
-
-	const [modal, setModal] = React.useState<modalInterface>({
-		item: "",
-		isOpen: false,
-	});
-
 	return (
-		<article
-			className={
-				modal.isOpen
-					? `${styles.content} ${styles.scrollBlock}`
-					: `${styles.content}`
-			}>
-			<div className={styles.information__block}>
-				<p className={styles.information__text}>
-					<b>ФИО:</b> {GetUser.name}
-				</p>
-				<p className={styles.information__text}>
-					<b>Группа:</b> {GetUser.group}
-				</p>
-				<p className={styles.information__text}>
-					<b>Роль:</b>
-					{GetUser.role === "student" ? " Студент" : " Преподаватель"}
-				</p>
-			</div>
-
-			<div className={styles.temp}>
-				<p>Общая успеваемость:</p>
-				<Progress.Line
-					percent={100}
-					strokeColor="blue"
-					strokeWidth={4}
-					vertical={false}
-				/>
-			</div>
-
-			<div className={styles.lessons__block}>
-				<UserModal
-					subject_name={modal.item}
-					isOpen={modal.isOpen}
-					onClose={() => {
-						setModal(prevModal => ({ ...prevModal, isOpen: false }));
-					}}
-				/>
-				{GetUser.lessons?.map(lesson => {
-					return (
-						<div
-							onClick={() => {
-								setModal(() => ({ isOpen: true, item: lesson.name }));
-							}}
-							className={styles.lesson}
-							key={lesson.name}>
-							<p className={styles.information__text}>
-								<b>Предмет:</b> {lesson.name}
-							</p>
-							<div className={styles.progress__block}>
-								<p className={styles.progress__text}>
-									<b>Посещение:</b>
-								</p>
-								<Circle progress={lesson.attendance} />
-							</div>
-						</div>
-					);
-				})}
-			</div>
+		<article className={styles.content}>
+			<Name
+				name={GetUser.name}
+				group={GetUser.group}
+				role={GetUser.role}
+			/>
+			<ProgressBlock/>
+			<LessonsList
+				lessons={GetUser.lessons}
+			/>
 		</article>
 	);
 };
