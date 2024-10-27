@@ -4,7 +4,7 @@ import styles from './Button.module.css'
 interface ButtonProps {
     text: string,
     onClick: () => void,
-    size: 'm' | 'l' | 's'
+    size: 'm' | 'l' | 's' | "xl"
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
                     `${styles.button} ${styles.size_l}` : 
                 size === 's' ? 
                     `${styles.button} ${styles.size_s}` :
-                    `${styles.button} ${styles.size_m}`}
+                    `${styles.button} ${styles.size_xl}`}
             onClick={onClick}
         >
             {text}

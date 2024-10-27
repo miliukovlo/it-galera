@@ -15,19 +15,11 @@
     flex-direction: column;
     list-style: none;
 }
+.usersNotFound {
+    font-size: 2vh;
+}
 .observer {
     width: 100%;
     height: 30px;
-}
-
-.filterContainer {
-    width:  40%;
-    height: 60px;
-    border: none;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
 }
 

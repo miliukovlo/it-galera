@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./SearchInput.module.css";
 import CrossIcon from "@/Components/Common/Svg/Icons/CrossIcon/CrossIcon";
+import Button from "../Button/Button";
 
 interface SearchInputProps {
   value: string;
@@ -8,6 +9,7 @@ interface SearchInputProps {
   onResetFilter: () => void;
   onFind?: () => void;
   name: string;
+  handleFind: () => void
 }
 
 const SearchInput = ({
@@ -15,6 +17,7 @@ const SearchInput = ({
   onChange,
   onResetFilter,
   name,
+  handleFind
 }: SearchInputProps) => {
   return (
     <div className={styles.searchInputContainer}>
@@ -30,7 +33,11 @@ const SearchInput = ({
         <CrossIcon />
       </button>
       <div className={styles.findButtonContainer}>
-        <button className={styles.findButton}>Поиск</button>
+        <Button
+          size="xl"
+          text="Поиск"
+          onClick={handleFind}
+        />
       </div>
     </div>
   );
