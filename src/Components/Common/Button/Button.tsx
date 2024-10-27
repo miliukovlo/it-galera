@@ -4,16 +4,19 @@ import styles from './Button.module.css'
 interface ButtonProps {
     text: string,
     onClick: () => void,
-    size: 'm' | 'l' | 's' | "xl"
+    size: 'm' | 'l' | 's' | "xl",
+    disabled: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
     text,
     onClick,
-    size
+    size,
+    disabled
 }: ButtonProps) => {
     return (
         <button
+            disabled={disabled}
             className={
                 size === "m" ?
                     `${styles.button} ${styles.size_m}` : 

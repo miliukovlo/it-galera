@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Student.module.css'
 import Button from '@/Components/Common/Button/Button';
 
@@ -7,7 +7,7 @@ interface StudentProps {
     group: string,
     fio: string,
     isHere: boolean,
-    handleAddStudent: (id: number) => void
+    handleAddStudent: (id: number) => void,
 }
 
 const Student : React.FC<StudentProps> = ({
@@ -15,8 +15,29 @@ const Student : React.FC<StudentProps> = ({
     group,
     fio,
     isHere,
-    handleAddStudent
+    handleAddStudent,
 }: StudentProps) => {
+
+    const [disabled, setDisabled] = useState<boolean>(false);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+    const changeStatusStudent = (id: number): void => {
+        handleAddStudent(id)
+        setDisabled(true);
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+            setDisabled(false);
+        }, 3000);
+    };
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+            }
+        };
+    }, []);
     return (
         <li key={id} className={styles.list__element}>
             <div 
@@ -30,8 +51,9 @@ const Student : React.FC<StudentProps> = ({
                     </div>
                     <Button
                         text={!isHere ? "Отметить" : "Отсутствует"}
-                        onClick={() => {handleAddStudent(id)}}
+                        onClick={() => {changeStatusStudent(id)}}
                         size="s"
+                        disabled={disabled}
                     />
                 </ul>
             </div>
