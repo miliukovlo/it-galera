@@ -21,10 +21,10 @@
 .resetFilterButton {
     transition: 0.4s;
     position: absolute;
-    left: 56%;
+    left: 57%;
     background-color: transparent;
     border: none;
-    border-radius: 50%;
+    border-radius: 8px;
     cursor: pointer;
 }
 
