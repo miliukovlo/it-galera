@@ -56,6 +56,10 @@ useEffect(() => {
     }
 }, [inView]);
 
+useEffect(() => {
+	setFilteredList(generatedStudents.slice(0, limit))
+},[limit])
+
 return (
     <article className={styles.content}>
 		<Filter
