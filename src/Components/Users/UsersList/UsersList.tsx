@@ -20,6 +20,7 @@ const UsersList = () => {
 	});
 
 const handleResetFilter = () => {
+	setLimit(10)
     setFilter(() => ({
 		name: "",
 		campus: "",
@@ -41,6 +42,7 @@ const handleFilterChange = useCallback(
     },[]);
 
 const handleFindStudent = () => {
+	setLimit(10)
 	const filteredUsers = generatedStudents.filter(
     	user =>
 			user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
@@ -55,6 +57,16 @@ useEffect(() => {
 		setLimit(prevLimit => prevLimit + 10);
     }
 }, [inView]);
+
+useEffect(() => {
+	const filteredUsers = generatedStudents.filter(
+    	user =>
+			user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+			user.role.includes(filter.role) &&
+			user.group?.includes(filter.group_name)
+		);
+	setFilteredList(filteredUsers.slice(0, limit))
+},[limit])
 
 return (
     <article className={styles.content}>
