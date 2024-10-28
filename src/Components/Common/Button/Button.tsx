@@ -5,7 +5,7 @@ interface ButtonProps {
     text: string,
     onClick: () => void,
     size: 'm' | 'l' | 's' | "xl",
-    disabled: boolean
+    disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
