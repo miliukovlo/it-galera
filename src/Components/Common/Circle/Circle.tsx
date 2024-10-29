@@ -1,10 +1,11 @@
+import React from "react"
 import { Progress } from "rsuite"
 
 interface CircleProps {
     progress: number
 }
 
-const Circle : React.FC<CircleProps> = ({
+const Circle : React.FC<CircleProps> = React.memo(({
     progress
 }) => {
     return (
@@ -16,6 +17,8 @@ const Circle : React.FC<CircleProps> = ({
         trailWidth={10}
         />
     )
-}
+})
+
+Circle.displayName = "Circle"
 
 export default Circle
