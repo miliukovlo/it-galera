@@ -8,7 +8,7 @@ interface ButtonProps {
     disabled?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = React.memo(({
     text,
     onClick,
     size,
@@ -30,6 +30,8 @@ const Button: React.FC<ButtonProps> = ({
             {text}
         </button>
     );
-}
+})
+
+Button.displayName = "Button"
 
 export default Button;
