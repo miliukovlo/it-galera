@@ -34,6 +34,7 @@ const CurrentUser: React.FC = () => {
 			name: "",
 			attendance: 0
 		}));
+		setFilteredList(GetUser.lessons!)
 	};
 
 	const handleFindSubject = () => {
@@ -41,7 +42,7 @@ const CurrentUser: React.FC = () => {
 			const filteredSubjects: lessonsInterface[] = GetUser.lessons.filter(
 				subject =>
 					subject.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-					subject.attendance <= filter.attendance
+					subject.attendance >= filter.attendance
 				);
 			setFilteredList(filteredSubjects);
 		}

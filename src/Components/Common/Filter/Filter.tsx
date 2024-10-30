@@ -34,7 +34,7 @@ const Filter: React.FC<FilterProps> = ({
             department: userFilter.department,
         } as valueMapInterface;
     } else {
-        const subjectFilter = filter as filterSubjectInterface;
+        const subjectFilter = filter as filterSubjectInterface; 
 
         valueMap = {
             attendance: subjectFilter.attendance,
@@ -49,7 +49,7 @@ const Filter: React.FC<FilterProps> = ({
         <>
             <SearchInput
                 onChange={onFilterChange}
-                value={(filter as any).name}
+                value={filter.name}
                 name={"name"}
                 onResetFilter={onResetFilter}
                 handleFind={handleFind}
