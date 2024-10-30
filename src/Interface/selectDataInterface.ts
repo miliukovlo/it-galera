@@ -6,7 +6,7 @@ export interface selectDataInterface {
 
 export interface optionsInterface {
     text: string,
-    value: string
+    value: string | number
 }
 
 export interface valueMapInterface {
@@ -14,4 +14,8 @@ export interface valueMapInterface {
     group_name: string;
     role: string;
     department: string;
-  }
+}
+
+export interface valueSubjectInterface {
+    attendance: number
+}

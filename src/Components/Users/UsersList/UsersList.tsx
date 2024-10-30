@@ -76,6 +76,7 @@ return (
 			onResetFilter={handleResetFilter}
 			selectData={selectData}
 			handleFind={handleFindStudent} 
+			component='users'
 		/>
 
 		<ul className={styles.users__list}>
