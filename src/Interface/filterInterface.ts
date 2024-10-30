@@ -5,3 +5,8 @@ export interface filterInterface {
     department: string,
     role: string,
 }
+
+export interface filterSubjectInterface {
+    name: string,
+    attendance: number
+}

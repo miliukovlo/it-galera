@@ -43,3 +43,23 @@ export const selectData:selectDataInterface[]= [
       selectName: "role"
     },
   ];
+
+  export const selectSubjectData:selectDataInterface[]= [
+    {
+      id: 1,
+      options: [
+        { text: "% Посещения", value: 0},
+        { text: ">10%" , value: 10},
+        { text: ">20%" , value: 20},
+        { text: ">30%" , value: 30},
+        { text: ">40%" , value: 40},
+        { text: ">50%" , value: 50},
+        { text: ">60%" , value: 60},
+        { text: ">70%" , value: 70},
+        { text: ">80%" , value: 80},
+        { text: ">90%" , value: 90},
+        { text: "100%" , value: 100},
+      ],
+      selectName: "attendance"
+    },
+  ];
