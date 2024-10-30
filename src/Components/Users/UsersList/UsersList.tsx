@@ -28,6 +28,7 @@ const handleResetFilter = () => {
 		role: "",
 		department: "",
     }));
+	setFilteredList(generatedStudents)
 };
 
 const [ref, inView] = useInView({ threshold: 1 });
