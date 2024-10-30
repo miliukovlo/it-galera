@@ -1,11 +1,13 @@
 .filterSelectContainer {
     position: relative;
     width: 80%;
+    max-width: 150px;
 }
 
 .filterSelect {
     height: 35px;
     width: 100%;
+    max-width: 150px;
     border: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -25,7 +27,6 @@
     left: 85%;
     top: 40%;
     pointer-events: none;
-
     width: 0px;
     height: 0px;
     border-style: solid;
