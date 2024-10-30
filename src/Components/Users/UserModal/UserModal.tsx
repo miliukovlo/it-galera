@@ -20,7 +20,7 @@ const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
 	};
 
 	return (
-		<div
+		<dialog
 			className={isOpen ? styles.userModalContainer : styles.hideModal}
 			onClick={onClose}>
 			<div className={styles.userModalWrapper} onClick={handleContentClick}>
@@ -54,7 +54,7 @@ const UserModal = ({ isOpen, onClose, subject_name }: userModalInterface) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</dialog>
 	);
 };
 

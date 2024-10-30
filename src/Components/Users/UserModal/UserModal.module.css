@@ -57,6 +57,7 @@
     margin: 25px;
     padding: 10px;
     height: 90%;
+    width: 80%;
     justify-content: center;
     background-color: var(--background);
     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
@@ -64,6 +65,62 @@
     grid-template-columns: repeat(5, 150px);
     grid-auto-rows: 100px;
     gap: 25px;
+    overflow-x: hidden;
+}
+
+@media (min-width: 1400px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(5, 150px);
+    }
+}
+
+@media (max-width: 1340px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(4, 150px);
+    }
+}
+
+@media (max-width: 1065px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(3, 150px);
+    }
+}
+
+@media (max-width: 800px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(3, 120px);
+    }
+}
+
+@media (max-width: 800px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(3, 120px);
+    }
+}
+
+@media (max-width: 670px) {
+    .lessonsTableContainer{
+        grid-template-columns: repeat(2, 120px);
+    }
+
+    .closeModalButton, .closeModalButton svg {
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+    }
+}
+
+@media (max-width: 435px) {
+    .lessonsTableContainer{
+        gap: 15px;
+        grid-template-columns: repeat(2, 100px);
+    }
+
+    .closeModalButton, .closeModalButton svg {
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+    }
 }
 
 .noLessonsTableContainer {

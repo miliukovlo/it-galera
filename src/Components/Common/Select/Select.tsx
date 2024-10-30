@@ -3,27 +3,31 @@ import styles from "./Select.module.css";
 import { optionsInterface } from "@/Interface/selectDataInterface";
 
 interface SelectProps {
-  options: Array<optionsInterface>;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectName: string;
-  value: string; 
+	options: Array<optionsInterface>;
+	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+	selectName: string;
+	value: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
-  selectName,
-  options,
-  onChange,
-  value, 
+	selectName,
+	options,
+	onChange,
+	value,
 }: SelectProps) => {
-  return (
-    <div className={styles.filterSelect}>
-      <select name={selectName} onChange={onChange} value={value}> 
-        {options.map((option) => (
-          <option key={option.text} value={option.value}>
-            {option.text}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+	return (
+		<div className={styles.filterSelectContainer}>
+			<select
+				className={styles.filterSelect}
+				name={selectName}
+				onChange={onChange}
+				value={value}>
+				{options.map(option => (
+					<option key={option.text} value={option.value}>
+						{option.text}
+					</option>
+				))}
+			</select>
+		</div>
+	);
 };
