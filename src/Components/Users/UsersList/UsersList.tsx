@@ -7,9 +7,13 @@ import { generatedStudentsInterface } from '@/Interface/generatedStudentsInterfa
 import { filterInterface } from '@/Interface/filterInterface';
 import { generatedStudents } from '@/data/GeneratedStudents';
 import { selectData } from '@/data/selectData';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const UsersList = () => {
 	const [limit, setLimit] = useState<number>(10);
+    const user = useSelector((state: RootState) => state.user.user);
+	console.log(user)
 	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>(generatedStudents);
 	const [filter, setFilter] = useState<filterInterface>({
 		name: "",
