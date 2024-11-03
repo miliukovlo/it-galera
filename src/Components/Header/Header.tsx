@@ -15,12 +15,12 @@ import { setUser } from "@/store/userData/userStore";
 
 const linksTeacher: headerNavInterface[] = [
   { id: "1", text: "Расписание", href: "/schedule" },
-  { id: "2", text: "Студенты", href: "/users" },
+  { id: "2", text: "Статистика", href: "/users" },
 ];
 
 const linksAdmin: headerNavInterface[] = [
   { id: "1", text: "Создать пользователя", href: "/create" },
-  { id: "2", text: "Пользователи", href: "/users" },
+  { id: "2", text: "Статистика", href: "/users" },
 ];
 
 interface HeaderProps {

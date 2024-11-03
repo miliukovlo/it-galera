@@ -38,37 +38,42 @@ const LessonsList: React.FC<LessonsListProps> = ({
 
 	return (
 		<div className={styles.lessons__block}>
-			{modal.isOpen && (
-				<DynamicUserModal
+			{lessons && lessons.length !== 0 ? (
+				<>
+				{modal.isOpen && (
+					<DynamicUserModal
 					subject_name={modal.item}
 					isOpen={modal.isOpen}
 					onClose={() => {
 						setModal(prevModal => ({ ...prevModal, isOpen: false }));
 					}}
-				/>
-			)}
-			{lessons?.map(lesson => {
-				return (
+					/>
+				)}
+				{lessons.map(lesson => (
 					<div
-						onClick={() => {
-							setModal(() => ({ isOpen: true, item: lesson.name }));
-						}}
-						className={styles.lesson}
-						key={lesson.name}>
-						<p className={styles.information__text}>
-							<b>Предмет:</b> {lesson.name}
+					onClick={() => {
+						setModal(() => ({ isOpen: true, item: lesson.name }));
+					}}
+					className={styles.lesson}
+					key={lesson.name}
+					>
+					<p className={styles.information__text}>
+						<b>Предмет:</b> {lesson.name}
+					</p>
+					<div className={styles.progress__block}>
+						<p className={styles.progress__text}>
+						<b>Посещение:</b>
 						</p>
-						<div className={styles.progress__block}>
-							<p className={styles.progress__text}>
-								<b>Посещение:</b>
-							</p>
-							<Circle progress={lesson.attendance} />
-						</div>
+						<Circle progress={lesson.attendance} />
 					</div>
-				);
-			})}
+				</div>
+			))}
+			</>
+		) : (
+			<h1 className='header__text'>Предметы отсутствуют</h1>
+		)}
 		</div>
-	);
+	);	  
 };
 
 export default LessonsList;

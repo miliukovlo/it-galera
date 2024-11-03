@@ -6,6 +6,7 @@ interface User {
     password: string;
     role: "teacher" | "admin";
     fio: string;
+    groups?: Array<string>
 }
 
 interface UserState {
