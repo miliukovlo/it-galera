@@ -6,7 +6,7 @@ import UserElement from './../UserElement/UserElement';
 import { generatedStudentsInterface } from '@/Interface/generatedStudentsInterface';
 import { filterInterface } from '@/Interface/filterInterface';
 import { generatedStudents } from '@/data/GeneratedStudents';
-import { selectData } from '@/data/selectData';
+import { selectData, selectTeacherData } from '@/data/selectData';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { setFilterChange } from '@/Hooks/setFilterChange';
@@ -17,7 +17,7 @@ const UsersList = () => {
 	const [limit, setLimit] = useState<number>(10);
     const user = useSelector((state: RootState) => state.user.user);
 	const cyrilicTranslit = cyrillicToTranslit();
-	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>([]);
+	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>(generatedStudents);
 	const [filter, setFilter] = useState<filterInterface>({
 		name: "",
 		campus: "",
@@ -45,17 +45,18 @@ const handleFilterChange = useCallback((e: React.ChangeEvent<HTMLInputElement | 
 const handleFindStudent = () => {
 	setLimit(10)
 	const filteredUsers = generatedStudents.filter(
-    	user =>
-			user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-			user.role.includes(filter.role) &&
-			user.group?.includes(filter.group_name)
+    	student =>
+			student.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+			student.role.includes(filter.role) &&
+			student.group?.includes(filter.group_name)
 		);
     setFilteredList(filteredUsers.slice(0, limit));
 }
 
 const setStudentsForList = () => {
 	if (user && user.role === "admin") {
-		setFilteredList(generatedStudents);
+		const students = generatedStudents;
+		setFilteredList(students);
   	} 
 }
 
@@ -64,10 +65,6 @@ useEffect(() => {
 		setLimit(prevLimit => prevLimit + 10);
     }
 }, [inView]);
-
-useEffect(() => {
-	setStudentsForList()
-  }, [user, generatedStudents]);
 
 
 useEffect(() => {
@@ -87,7 +84,7 @@ return (
 			filter={filter}
 			onFilterChange={handleFilterChange}
 			onResetFilter={handleResetFilter}
-			selectData={selectData.map(select => 
+			selectData={(user?.role == "teacher" ? selectTeacherData : selectData).map(select => 
 				select.id === 3 && user?.role === "teacher" 
 				? {
 					...select,
