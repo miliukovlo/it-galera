@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Student.module.css'
 import Button from '@/Components/Common/Button/Button';
+import { Select } from '@/Components/Common/Select/Select';
+import { selectCauseData } from '@/data/selectData';
 
 interface StudentProps {
     id: number,
@@ -20,6 +22,7 @@ const Student : React.FC<StudentProps> = ({
 
     const [disabled, setDisabled] = useState<boolean>(false);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const [cause, setCause] = useState<string>('')
 
     const changeStatusStudent = (id: number): void => {
         handleAddStudent(id)
@@ -29,8 +32,13 @@ const Student : React.FC<StudentProps> = ({
         }
         timerRef.current = setTimeout(() => {
             setDisabled(false);
-        }, 3000);
+        }, 2000);
     };
+
+    const handleSetCause = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        setCause(e.target.value)
+    }
+
     useEffect(() => {
         return () => {
             if (timerRef.current) {
@@ -46,6 +54,15 @@ const Student : React.FC<StudentProps> = ({
                 <ul className={styles.stud__info_list}>
                     <li className={styles.stud__group}>Группа: {group}</li>
                     <li className={styles.stud__fio}>{fio}</li>
+                    <div className={styles.select__block}>
+                        <Select
+                            options={selectCauseData.options}
+                            selectName={selectCauseData.selectName}
+                            value={cause}
+                            onChange={handleSetCause}
+                            hidden={isHere}
+                        />
+                    </div>
                     <div className={isHere ? `${styles.stud__status} ${styles.stud__here}` : `${styles.stud__status} ${styles.stud__not_here}`}>
                         {isHere ? "Присутствует" : "Отсутствует"}
                     </div>

@@ -7,6 +7,7 @@ interface SelectProps {
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 	selectName: string;
 	value: string;
+	hidden?: boolean
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -14,9 +15,10 @@ export const Select: React.FC<SelectProps> = ({
 	options,
 	onChange,
 	value,
+	hidden
 }: SelectProps) => {
 	return (
-		<div className={styles.filterSelectContainer}>
+		<div className={hidden ? `${styles.filterSelectContainer} ${styles.hidden}` : styles.filterSelectContainer}>
 			<select
 				className={styles.filterSelect}
 				name={selectName}

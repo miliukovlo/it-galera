@@ -1,5 +1,17 @@
 import { selectDataInterface } from '@/Interface/selectDataInterface';
 
+export const selectCauseData:selectDataInterface= {
+    id: 1,
+    options: [
+      { text: "Причина", value: ''},
+      { text: "Болел" , value: "Болел"},
+      { text: "Уважительная", value: "Уважительная" },
+      { text: "Не пришел", value: "Не пришел" },
+      { text: "Опоздал", value: "Опоздал"}
+    ],
+    selectName: "cause"
+  };
+
 export const selectTeacherData:selectDataInterface[]= [
   {
     id: 1,
