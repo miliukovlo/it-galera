@@ -6,6 +6,7 @@ import UserElement from '@/Components/Users/UserElement/UserElement';
 import { notFound, useParams } from 'next/navigation';
 import { GetStudentsOfGroup } from '@/Hooks/GetStudentsOfGroup';
 import { generatedStudentsInterface } from '@/Interface/generatedStudentsInterface';
+import ProgressBlock from '@/Components/Common/ProgressBlock/ProgressBlock';
 
 const Group = () => {
     const { group } = useParams();
@@ -33,7 +34,7 @@ const Group = () => {
     }, [group]);
     return (
         <div className={styles.wrapper}>
-        <h1 className={styles.header__text}>Общая успеваемость: 86%</h1>
+        <ProgressBlock/>
         <ul className={styles.group__list}>
             {students.map(student => {
                 return (

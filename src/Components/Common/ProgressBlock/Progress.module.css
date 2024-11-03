@@ -8,5 +8,5 @@
     background-color: var(--secondary-color);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 16px;
-    /* padding-left: 115px; */
+    margin: 20px;
 }
