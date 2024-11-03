@@ -9,12 +9,15 @@ import { generatedStudents } from '@/data/GeneratedStudents';
 import { selectData } from '@/data/selectData';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { setFilterChange } from '@/Hooks/setFilterChange';
+import Link from 'next/link';
+import cyrillicToTranslit from 'cyrillic-to-translit-js';
 
 const UsersList = () => {
 	const [limit, setLimit] = useState<number>(10);
     const user = useSelector((state: RootState) => state.user.user);
-	console.log(user)
-	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>(generatedStudents);
+	const cyrilicTranslit = cyrillicToTranslit();
+	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>([]);
 	const [filter, setFilter] = useState<filterInterface>({
 		name: "",
 		campus: "",
@@ -37,14 +40,7 @@ const handleResetFilter = () => {
 
 const [ref, inView] = useInView({ threshold: 1 });
 
-const handleFilterChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-		const { name, value } = e.target;
-		setFilter(prevFilter => ({
-			...prevFilter,
-			[name]: value,
-		}));
-    },[]);
+const handleFilterChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {setFilterChange(e,setFilter)},[]);
 
 const handleFindStudent = () => {
 	setLimit(10)
@@ -57,6 +53,12 @@ const handleFindStudent = () => {
     setFilteredList(filteredUsers.slice(0, limit));
 }
 
+const setStudentsForList = () => {
+	if (user && user.role === "admin") {
+		setFilteredList(generatedStudents);
+  	} 
+}
+
 useEffect(() => {
     if (inView) {
 		setLimit(prevLimit => prevLimit + 10);
@@ -64,7 +66,13 @@ useEffect(() => {
 }, [inView]);
 
 useEffect(() => {
-	const filteredUsers = generatedStudents.filter(
+	setStudentsForList()
+  }, [user, generatedStudents]);
+
+
+useEffect(() => {
+	setStudentsForList()
+	const filteredUsers = filteredList.filter(
     	user =>
 			user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
 			user.role.includes(filter.role) &&
@@ -79,13 +87,22 @@ return (
 			filter={filter}
 			onFilterChange={handleFilterChange}
 			onResetFilter={handleResetFilter}
-			selectData={selectData}
+			selectData={selectData.map(select => 
+				select.id === 3 && user?.role === "teacher" 
+				? {
+					...select,
+					options: select.options.filter(option => user.groups?.includes(option.text)) 
+					} 
+				: select 
+			)}
 			handleFind={handleFindStudent} 
 			component='users'
 		/>
 
+
 		<ul className={styles.users__list}>
-			{filteredList.length === 0 ? 
+			{user && user.role === 'admin' ?
+			filteredList.length === 0 ? 
 				<h1 className={styles.usersNotFound}>Пользователи не найдены!</h1>
 				:
 				filteredList.map(user => (
@@ -97,6 +114,15 @@ return (
 						key={user._id}
 					/>
 					))
+				:
+				user && user.groups!.map(group => (
+					<Link key={group} className={styles.group__href} href={`group/${cyrilicTranslit.transform(group).toLowerCase()}`}>
+						<div className={styles.group__element}>
+							<p className={styles.group__text}><b>Группа:</b> {group}</p>
+							<p className={styles.group__text}><b>Студентов:</b> 10</p>
+						</div>
+					</Link>
+				))
 			}
 		</ul>
 		<div ref={ref} className={styles.observer}></div>
