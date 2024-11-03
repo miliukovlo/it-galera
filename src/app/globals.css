@@ -36,6 +36,13 @@ a {
   background-color: var(--background);
 }
 
+
+.header__text {
+  font-size: 3vh;
+  text-align: center;
+  margin: 20px;
+}
+
 .error__text {
   color: darkred;
   font-size: 2vh;

@@ -5,7 +5,7 @@ import { notFound, useParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
 import styles from "./CurrentUser.module.css";
 import Name from "@/Components/Users/[id]/Name/Name";
-import ProgressBlock from "@/Components/Users/[id]/ProgressBlock/ProgressBlock";
+import ProgressBlock from "@/Components/Common/ProgressBlock/ProgressBlock";
 import LessonsList from "@/Components/Users/[id]/LessonsList/LessonsList";
 import Filter from "@/Components/Common/Filter/Filter";
 import { filterSubjectInterface } from "@/Interface/filterInterface";
