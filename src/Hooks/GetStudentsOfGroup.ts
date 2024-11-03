@@ -7,7 +7,6 @@ export const GetStudentsOfGroup = (group__name: string) : generatedStudentsInter
         const cyrilicTranslit = cyrillicToTranslit();
         if (group__name) {
             const group = cyrilicTranslit.reverse(group__name)
-            console.log(group)
             return generatedStudents.filter(student => student.group === group)
         }
     } catch (e: unknown) {
