@@ -116,7 +116,7 @@ return (
 					))
 				:
 				user && user.groups!.map(group => (
-					<Link key={group} className={styles.group__href} href={`group/${cyrilicTranslit.transform(group).toLowerCase()}`}>
+					<Link key={group} className={styles.group__href} href={`group/${cyrilicTranslit.transform(group)}`}>
 						<div className={styles.group__element}>
 							<p className={styles.group__text}><b>Группа:</b> {group}</p>
 							<p className={styles.group__text}><b>Студентов:</b> 10</p>

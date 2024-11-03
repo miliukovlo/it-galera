@@ -1,9 +1,11 @@
 import React from 'react';
+import Group from './Group';
 
 const Page = () => {
+
     return (
-        <div>
-            Group Page
+        <div className='main'>
+            <Group/>
         </div>
     );
 }
