@@ -69,7 +69,7 @@ useEffect(() => {
 
 useEffect(() => {
 	setStudentsForList()
-	const filteredUsers = filteredList.filter(
+	const filteredUsers = generatedStudents.filter(
     	user =>
 			user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
 			user.role.includes(filter.role) &&
