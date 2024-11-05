@@ -1,7 +1,7 @@
 "use client";
 
 import { GetCurrentUser } from "@/Hooks/GetCurrentUser";
-import { notFound, useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import React, { useCallback, useState } from "react";
 import styles from "./CurrentUser.module.css";
 import Name from "@/Components/Users/[id]/Name/Name";
@@ -12,8 +12,13 @@ import { filterSubjectInterface } from "@/Interface/filterInterface";
 import { selectSubjectData } from "@/data/selectData";
 import { lessonsInterface } from "@/Interface/generatedStudentsInterface";
 
-const CurrentUser: React.FC = () => {
-	const { id } = useParams();
+interface CurrentUserProps {
+	id: string
+}
+
+const CurrentUser: React.FC<CurrentUserProps> = ({
+	id
+}) => {
 	const userId = Array.isArray(id) ? id[0] : id;
 	if (!userId) {
 		notFound();
