@@ -3,14 +3,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Group.module.css'
 import UserElement from '@/Components/Users/UserElement/UserElement';
-import { notFound, useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { GetStudentsOfGroup } from '@/Hooks/GetStudentsOfGroup';
 import { generatedStudentsInterface } from '@/Interface/generatedStudentsInterface';
 import ProgressBlock from '@/Components/Common/ProgressBlock/ProgressBlock';
 import cyrillicToTranslit from 'cyrillic-to-translit-js';
 
-const Group = () => {
-    const { group } = useParams();
+interface groupProps {
+    group: string
+}
+
+const Group : React.FC<groupProps> = ({
+    group
+}) => {
     const [students, setStudents] = useState<generatedStudentsInterface[]>([]);
     const cyrilicTranslit = cyrillicToTranslit();
     const [groupName, setGroupName] = useState<string>('')

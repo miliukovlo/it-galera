@@ -1,11 +1,17 @@
 import React from 'react';
 import Group from './Group';
 
-const Page = () => {
+interface pageProps {
+    params: Promise<{group: string}>
+}
+
+const Page : React.FC<pageProps> = async ({params}) => {
 
     return (
         <div className='main'>
-            <Group/>
+            <Group 
+                group={(await params).group}
+            />
         </div>
     );
 }
