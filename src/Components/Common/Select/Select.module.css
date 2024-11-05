@@ -3,6 +3,9 @@
     width: 80%;
     max-width: 150px;
 }
+.hidden {
+    display: none;
+}
 
 .filterSelect {
     height: 35px;
@@ -12,7 +15,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
     border-radius: 4px;
     outline: none;
     padding-left: 5px;

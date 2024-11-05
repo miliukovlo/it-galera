@@ -37,6 +37,13 @@
     font-size: 1.2vh;
     color: var(--background);
 }
+.select__block {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .stud__here {
     background-color: rgb(125, 175, 138);
 }
