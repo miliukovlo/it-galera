@@ -12,9 +12,10 @@ export async function middleware(request: NextRequest) {
     if (!session && (
         request.nextUrl.pathname === '/dashboard' || 
         request.nextUrl.pathname === '/users' || 
-        request.nextUrl.pathname === '/users:id' || 
+        request.nextUrl.pathname === '/users/:id' || 
         request.nextUrl.pathname === '/create' || 
-        request.nextUrl.pathname === '/schedule'
+        request.nextUrl.pathname === '/schedule' ||
+        request.nextUrl.pathname === "/group/:id"
     )) {
         return NextResponse.redirect(new URL('/auth', request.url));
     }
@@ -37,6 +38,7 @@ export const config = {
         "/users",
         "/users/:id",
         "/create",
-        "/schedule"
+        "/schedule",
+        "/group/:id"
     ]
 }
