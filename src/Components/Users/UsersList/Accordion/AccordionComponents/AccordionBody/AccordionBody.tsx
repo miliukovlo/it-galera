@@ -1,4 +1,3 @@
-import { useRef, MutableRefObject } from "react";
 import styles from "./AccordionBody.module.css";
 import AccordionSubjectItem from "../AccordionSubjectItem/AccordionSubjectItem";
 
@@ -10,20 +9,30 @@ interface subjectsInterface {
 interface AccordionBodyInterface {
 	subjects: subjectsInterface[];
 	isOpen: boolean;
+	group_name: string;
 }
 
-const AccordionBody = ({ subjects, isOpen }: AccordionBodyInterface) => {
-	const itemRef = useRef() as MutableRefObject<HTMLUListElement>;
+const AccordionBody = ({
+	subjects,
+	isOpen,
+	group_name,
+}: AccordionBodyInterface) => {
 	return (
 		<div
 			className={styles.accordion_collapse}
 			style={
-				isOpen ? { height: itemRef.current.scrollHeight } : { height: "0px" }
+				isOpen ? { height: 50 * subjects.length + 60 } : { height: "0px" }
 			}>
-			<ul className={styles.subjects_list} ref={itemRef}>
+			{/* (40px - one item + 10px - gap) and 60px - General item + padding in the end */}
+			<ul className={styles.subjects_list}>
 				{subjects.map(subject => (
-					<AccordionSubjectItem key={subject.id} name={subject.name} />
+					<AccordionSubjectItem
+						key={subject.id}
+						name={subject.name}
+						group_name={group_name}
+					/>
 				))}
+				<AccordionSubjectItem name="General" group_name={group_name} />
 			</ul>
 		</div>
 	);

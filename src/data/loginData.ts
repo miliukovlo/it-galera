@@ -6,7 +6,7 @@ export const loginData : loginInterface[] = [
         password: "password",
         role: "teacher",
         fio: "Иванов Иван Иванович",
-        groups: ["ИИПб-24-1", "ИИПб-23-1"]
+        groups: ["ИИПб-24-1", "ИИПб-23-1", "РППб-24-1", "СМАРТб-24-1"]
     },
     {
         email: "admin@mail.ru",
