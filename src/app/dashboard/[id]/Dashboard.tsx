@@ -1,14 +1,17 @@
-"use client"
-
 import React from 'react';
 import styles from "./Dashboard.module.css"
 import StudentsList from '@/Components/Dashboard/StudentsList/StudentsList';
 import QRCode from '@/Components/Dashboard/QRCode/QRCode';
-import { notFound, useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { schedule } from '@/data/coupleData';
 
-const Dashboard : React.FC = () => {
-    const {id} = useParams()
+interface DashboardProps {
+    id: string
+}
+
+const Dashboard : React.FC<DashboardProps> = ({
+    id
+}) => {
     const lesson = schedule.find((lesson) => lesson.id === Number(id))
     if (!lesson || !id) {
         notFound()
