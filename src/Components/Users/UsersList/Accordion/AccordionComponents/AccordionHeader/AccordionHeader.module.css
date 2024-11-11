@@ -1,0 +1,26 @@
+.headerContainer {
+    margin: 10px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;  
+}
+
+.openSubjectsBlock {
+    width: 10%;
+    background-color: var(--background);
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.openSubjectsBlockButton {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}

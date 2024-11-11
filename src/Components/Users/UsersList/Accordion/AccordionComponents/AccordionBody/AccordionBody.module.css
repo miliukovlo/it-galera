@@ -1,0 +1,19 @@
+.subjects_list {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    list-style-type: none;
+    padding: 0px 30px 15px 30px;
+    gap: 10px;
+}
+
+.accordion_collapse {
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s;
+    border-end-end-radius: 8px;
+    border-end-start-radius: 8px;
+}
+
