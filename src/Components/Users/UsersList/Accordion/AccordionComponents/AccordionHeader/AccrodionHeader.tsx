@@ -14,7 +14,7 @@ const AccrodionHeader = ({
 }: AccordionHeaderInterface) => {
 	return (
 		<div className={styles.headerContainer}>
-			<p>{group_name}</p>
+			<p className={styles.groupNameText}>{group_name}</p>
 			<div className={styles.openSubjectsBlock} onClick={onClick}>
 				<p>Предметы</p>
 				<button className={styles.openSubjectsBlockButton}>

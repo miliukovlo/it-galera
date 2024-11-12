@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-basis: 0;
 }
 
 .openSubjectsBlock {
@@ -15,6 +16,7 @@
     justify-content: space-evenly;
     align-items: center;
     cursor: pointer;
+    padding-left: 5px
 }
 
 .openSubjectsBlockButton {
@@ -25,4 +27,8 @@
 
 .iconActive{
     transform: rotate(180deg);
+}
+
+.groupNameText {
+    width: 50%;
 }

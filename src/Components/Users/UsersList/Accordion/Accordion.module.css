@@ -10,5 +10,5 @@
     margin-bottom: 10px;
     border-radius: 12px;
     transition:  0.4s;
-
+    user-select: none;
 }
