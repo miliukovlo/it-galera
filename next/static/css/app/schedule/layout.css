@@ -39,13 +39,6 @@ a {
   background-color: var(--background);
 }
 
-
-.header__text {
-  font-size: 3vh;
-  text-align: center;
-  margin: 20px;
-}
-
 .error__text {
   color: darkred;
   font-size: 2vh;
@@ -67,11 +60,16 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    margin-top: 40px;
+  padding: 0 2px;
+  @media (max-width: 576px) {
+    margin-top: 20px; 
+  }
 }
 .Footer_container__kIqUN {
-    width: 95%;
+ width: 100%;
     height: 100%;
+    padding: 0 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,26 +80,37 @@ a {
 .Footer_image__VN47U {
     border-radius: 8px;
     margin: 40px;
+    height: 75px;
+    width: 80px;
+    @media (max-width: 768px) {
+      height: 65px;
+      width: 70px;
+    }
+    @media (max-width: 576px) {
+      height: 45px;
+      width: 50px;
+    }
 }
 .Footer_text__header__cp7ud {
-    font-size: 3vh;
+    font-size: 16px;
     color:var(--foreground);
     margin: 40px;
+    @media (max-width: 576px) {
+      font-size: 12px;
+    }
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Header/Header.module.css ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************/
 .Header_header__AQ74G {
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
+
+  height: 40px;
+
+  margin-top: 25px;
 }
 .Header_container__QQGBw {
-  width: 95%;
-  height: 100%;
+  height: 40px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,33 +120,43 @@ a {
 }
 .Header_image__2MHY_ {
   border-radius: 8px;
-  margin: 40px;
+  width: 75px;
+  height: 80px;
+  @media (max-width: 576px) {
+    width: 65px;
+    height: 70px;
+  }
+
 }
 .Header_text__header__MDUqB {
-  font-size: 3vh;
+  font-size: 16px;
   color: var(--foreground);
 }
 
 .Header_navContainer__pw60_ {
   display: flex;
-  width: 40%;
-  height: 100%;
   justify-content: flex-end;
   align-items: center;
+  column-gap: 40px;
+  @media (max-width: 576px) {
+    column-gap: 15px;
+  }
 }
 
 .Header_navLink___cEVB {
   color: var(--foreground);
-  height: 100%;
-  width: 25%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+
 }
 
 .Header_navText__sJAyb {
-  font-size: 1.4vh;
+  font-size: 16px;
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
 }
 
 .Header_navText__sJAyb:hover{
@@ -168,13 +187,15 @@ a {
     transition-duration: 0.2s;
     animation-fill-mode:backwards;
 }
+.LogoutIcon_svg__PtCng{
+  height: 100%;
+}
 
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Header/Components/LogoutButton.module.css ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************/
 .LogoutButton_btn___Pdje {
-    width: 10%;
-    height: 100%;
+    height: 60px;
     border: 0;
     background-color: transparent;
     cursor: pointer;
