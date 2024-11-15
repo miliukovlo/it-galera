@@ -1,0 +1,181 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+:root {
+  --background: #eeeeee;
+  --foreground: #2c2c2c;
+  --secondary-color: #ffffff;
+  --third-color: #1a1919;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.main {
+  min-height: 80vh;
+  width: 100%;
+  background-color: var(--background);
+}
+
+
+.header__text {
+  font-size: 3vh;
+  text-align: center;
+  margin: 20px;
+}
+
+.error__text {
+  color: darkred;
+  font-size: 2vh;
+  transition-duration: 0.5s;
+}
+.error__text_hidden {
+  color: transparent;
+  font-size: 2vh;
+  transition-duration: 0.5s;
+}
+
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Footer/Footer.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.Footer_footer__kHNNQ {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.Footer_container__kIqUN {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondary-color);
+    border-radius: 12px;
+    box-shadow: 1px 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.Footer_image__VN47U {
+    border-radius: 8px;
+    margin: 40px;
+}
+.Footer_text__header__cp7ud {
+    font-size: 3vh;
+    color:var(--foreground);
+    margin: 40px;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Header/Header.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.Header_header__AQ74G {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.Header_container__QQGBw {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary-color);
+  border-radius: 12px;
+  box-shadow: 1px 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.Header_image__2MHY_ {
+  border-radius: 8px;
+  margin: 40px;
+}
+.Header_text__header__MDUqB {
+  font-size: 3vh;
+  color: var(--foreground);
+}
+
+.Header_navContainer__pw60_ {
+  display: flex;
+  width: 40%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Header_navLink___cEVB {
+  color: var(--foreground);
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Header_navText__sJAyb {
+  font-size: 1.4vh;
+}
+
+.Header_navText__sJAyb:hover{
+  color: var(--foreground);
+  transition: all 0.3s;
+}
+
+.Header_navText__sJAyb::after{
+  margin-top: 6px;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: rgb(145, 90, 234);
+  display: block;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.Header_navText__sJAyb:hover::after{
+  opacity: 1;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Common/Svg/Icons/LogoutIcon/LogoutIcon.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************/
+.LogoutIcon_svg__PtCng:hover {
+    fill: red;
+    transition-duration: 0.2s;
+    animation-fill-mode:backwards;
+}
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Header/Components/LogoutButton.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+.LogoutButton_btn___Pdje {
+    width: 10%;
+    height: 100%;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}

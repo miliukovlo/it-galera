@@ -1,0 +1,37 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/app/not-found.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.not-found_content__cklTM {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.not-found_svgContainer__XMe07 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.not-found_qrSvgContainer__1TU_Q {
+  position: absolute;
+  pointer-events: none;
+}
+
+.not-found_link__IQtjE {
+  margin: 15px;
+  font-size: 2vh;
+  color: black;
+  text-decoration: none;
+  transition-duration: 0.6s;
+  border-bottom: 2px solid transparent;
+  padding: 10px;
+}
+.not-found_link__IQtjE:hover {
+  border-bottom: 2px solid black;
+}
+

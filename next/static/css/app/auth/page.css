@@ -1,0 +1,79 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/app/auth/auth.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.auth_auth__content__RRnJB {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.auth_auth__head_text__93jNu {
+    font-size: 4vh;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Common/Input/Input.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.Input_size_m__FN4eW {
+    width: 40%;
+    height: 20%;
+    min-height: 40px;
+}
+.Input_input__o3JGy {
+    margin: 10px;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    text-indent: 10px;
+    border-radius: 8px;
+    transition-duration: 0.6s;
+}
+.Input_input__o3JGy:focus {
+    outline: 0;
+    transform: scale(1.02);
+}
+.Input_size_l__bPDxn {
+    width: 50%;
+    height: 15%;
+    min-height: 60px;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/Components/Common/Button/Button.module.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+.Button_size_s__FKRu6 {
+    width: 20%;
+    height: 20%;
+    min-height: 40px;
+}
+.Button_size_m__J6XGm {
+    width: 40%;
+    height: 20%;
+    min-height: 40px;
+}
+.Button_size_l__OzoNx {
+    width: 50%;
+    height: 15%;
+    min-height: 60px;
+}
+.Button_size_xl__tiXrY {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+}
+.Button_button__fPwCM {
+    border: 0;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    color: var(--background);
+    margin: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--foreground);
+    transition-duration: 0.6s;
+}
+.Button_button__fPwCM:disabled {
+    background-color: var(--third-color);
+}
+.Button_button__fPwCM:hover {
+    background-color: var(--third-color);
+}
