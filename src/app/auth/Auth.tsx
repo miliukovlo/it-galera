@@ -6,8 +6,8 @@ import Input from '@/Components/Common/Input/Input';
 import Button from '@/Components/Common/Button/Button';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { loginData } from '@/data/loginData';
 import { setUser } from '@/store/userData/userStore';
+import { GetLogin } from '@/Hooks/GetLogin';
 
 interface AuthProps {
     loginLib: (value: string, role: "teacher" | "admin") => Promise<boolean>,
@@ -28,26 +28,22 @@ const Auth : React.FC<AuthProps> = ({
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (login !== "" && password !== "") {
             setError(false)
-            const user = loginData.find(user => user.email === login)
-            if (user?.email === login && user.password === password) {
-                setError(false)
-                try {
-                    loginLib(login, user.role)
-                    dispatch(setUser(
-                        user
-                    ))
-                    replace("/dashboard")
-                } catch(e) {
-                    console.error(e)
-                } 
-            } else {
-                setError(true)
+            try {
+                const user = await GetLogin(login, password);
+                if (user) {
+                    await loginLib(login, user.role);
+                    dispatch(setUser(user));
+                    replace(user.role === 'teacher' ? "/schedule" : "/users");
+                }
+            } catch (e) {
+                console.error(e);
+                setError(true); 
             }
         } else {
-            setError(true)
+            setError(true);
         }
     }
 
