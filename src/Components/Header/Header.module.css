@@ -63,7 +63,19 @@
   transition: all 0.3s;
   pointer-events: none;
 }
-
+.navTextActive {
+  background-color: rgb(145, 90, 234);
+  color: white;
+  padding: 5px ;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+.navTextActive:hover {
+  background-color: rgb(145, 90, 234);
+  color: white;
+  padding: 10px ;
+  border-radius: 8px;
+}
 .navText:hover::after{
   opacity: 1;
 }
