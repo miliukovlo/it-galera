@@ -15,7 +15,7 @@ export default async function RootLayout ({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const role = getRole()
+  const role = await getRole()
     return (
     <>
         <Header role={role} type="other"/>
