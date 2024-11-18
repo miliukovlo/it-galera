@@ -1,7 +1,6 @@
 import React from 'react';
 import Auth from './Auth';
 import { Metadata } from 'next';
-import { login } from '@/authLib';
 
 
 export const metadata: Metadata = {
@@ -12,9 +11,7 @@ export const metadata: Metadata = {
 export const AuthPage = async () => {
     return (
         <>
-            <Auth
-                loginLib={login}
-            />
+            <Auth/>
         </>
     );
 }

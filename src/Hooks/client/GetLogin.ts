@@ -7,7 +7,6 @@ export const GetLogin = async (login: string, passwordLogin: string): Promise<lo
             email: login,
             password: passwordLogin
         });
-        console.log(response.data);
         if (response.data) {
             return response.data; 
         } else {
