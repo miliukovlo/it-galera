@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { GetLogin } from "../GetLogin";
+import { GetLogin } from "./GetLogin";
 import { login } from '@/authLib';
 import { setUser } from "@/store/userData/userStore";
 import { useRouter } from "next/navigation";
@@ -31,8 +31,6 @@ export const useHandleLogin = ({
             setError500(false);
             try {
                 const user = await GetLogin(loginValue, password);
-                console.log(user);
-                
                 if (user) {
                     await login(loginValue, user.role);
                     dispatch(setUser(user));

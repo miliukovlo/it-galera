@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from "./schedule.module.css";
-import { schedule } from '@/data/coupleData';
 import { coupleInterface } from '@/Interface/coupleInterface';
 import Lesson from '@/Components/Schedule/Lesson';
+import { GetSchedule } from '@/Hooks/client/GetSchedule';
 
-const Schedule = () => {
+const Schedule = async () => {
+    const schedule = GetSchedule()
     return (
         <article className={styles.content}>
             <h1 className={styles.header__text}>Расписание</h1>
             {
-                schedule.map((lesson: coupleInterface) => {
+                (await schedule).map((lesson: coupleInterface) => {
                     return (
                         <Lesson
                             key={lesson.id}
