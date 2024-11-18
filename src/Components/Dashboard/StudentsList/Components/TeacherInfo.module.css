@@ -1,0 +1,10 @@
+.teacher__info {
+    font-size: 2vh;
+    margin: 20px;
+    color: var(--foreground);
+}
+.about__lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

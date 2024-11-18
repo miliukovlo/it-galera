@@ -3,22 +3,25 @@ import styles from "./Dashboard.module.css"
 import StudentsList from '@/Components/Dashboard/StudentsList/StudentsList';
 import QRCode from '@/Components/Dashboard/QRCode/QRCode';
 import { notFound } from 'next/navigation';
-import { schedule } from '@/data/coupleData';
+import { GetLesson } from '@/Hooks/client/GetLesson';
+import { GetStudents } from '@/Hooks/client/GetStudents';
 
 interface DashboardProps {
     id: string
 }
 
-const Dashboard : React.FC<DashboardProps> = ({
+const Dashboard : React.FC<DashboardProps> = async ({
     id
 }) => {
-    const lesson = schedule.find((lesson) => lesson.id === Number(id))
+    const lesson = await GetLesson(id)
     if (!lesson || !id) {
         notFound()
     }
+    const students = await GetStudents(lesson.group)
     return (
         <main className={`main ${styles.content}`}>
-            <StudentsList 
+            <StudentsList
+                getStudents={students}
                 group={lesson.group}
                 title={lesson.title}
             />

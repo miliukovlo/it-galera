@@ -1,30 +1,24 @@
 "use client"
 
-import { initialStudents } from '@/data/students';
 import { studentInterface } from '@/Interface/StudentInterface';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from "./StudentsList.module.css"
 import Student from '../Student/Student';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import TeacherInfo from './Components/TeacherInfo';
 
 interface studentListInterface {
+    getStudents: studentInterface[],
     group: string,
     title: string
 }
 
 const StudentsList: React.FC<studentListInterface> = ({
+    getStudents,
     group,
     title
 }: studentListInterface) => {
 
-    const [students, setStudents] = useState<studentInterface[]>([]);
-    useEffect(() => {
-        const getStudents = initialStudents.filter(student => student.group === group);
-        setStudents(getStudents)
-    }, [])
-    
-    const user = useSelector((state: RootState) => state.user.user);
+    const [students, setStudents] = useState<studentInterface[]>(getStudents);
 
     const handleAddStudent = (id: number): void => {
         setStudents(prevStudents =>
@@ -36,11 +30,10 @@ const StudentsList: React.FC<studentListInterface> = ({
 
     return (
         <article className={styles.information__block}>
-            <div className={styles.about__lesson}>
-                <p className={styles.teacher__name}><b>Имя преподавателя:</b> {user?.fio}</p>
-                <p className={styles.teacher__name}><b>Предмет:</b> {title}</p>
-                <p className={styles.teacher__name}><b>Группа:</b> {group}</p>
-            </div>
+            <TeacherInfo
+                group={group}
+                title={title}
+            />
             <ul className={styles.group__list}>
                 {students.map((stud) => {
                     return (
