@@ -4,23 +4,14 @@ import React, { useState } from 'react';
 import styles from "./auth.module.css"
 import Input from '@/Components/Common/Input/Input';
 import Button from '@/Components/Common/Button/Button';
-import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@/store/userData/userStore';
-import { GetLogin } from '@/Hooks/GetLogin';
+import { useHandleLogin } from '@/Hooks/client/useHandleLogin';
 
-interface AuthProps {
-    loginLib: (value: string, role: "teacher" | "admin") => Promise<boolean>,
-}
-
-const Auth : React.FC<AuthProps> = ({
-    loginLib,
-}) => {
-    const dispatch = useDispatch();
+const Auth : React.FC = () => {
     const [login, setLogin] = useState<string>("")
     const [password, setPassword] = useState<string>("")
-    const [error, setError] = useState<boolean>(false)
-    const {replace} = useRouter()
+    const [error404, setError404] = useState<boolean>(false)
+    const [error401, setError401] = useState<boolean>(false)
+    const [error500, setError500] = useState<boolean>(false)
 
     const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLogin(e.target.value)
@@ -28,25 +19,7 @@ const Auth : React.FC<AuthProps> = ({
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-    const handleLogin = async () => {
-        if (login !== "" && password !== "") {
-            setError(false)
-            try {
-                const user = await GetLogin(login, password);
-                if (user) {
-                    await loginLib(login, user.role);
-                    dispatch(setUser(user));
-                    replace(user.role === 'teacher' ? "/schedule" : "/users");
-                }
-            } catch (e) {
-                console.error(e);
-                setError(true); 
-            }
-        } else {
-            setError(true);
-        }
-    }
-
+    const handleLogin = useHandleLogin({loginValue: login,password, setError404, setError401, setError500})
     return (
         <main className={`main ${styles.auth__content}`}>
             <h1 className={styles.auth__head_text}>Вход</h1>
@@ -69,7 +42,12 @@ const Auth : React.FC<AuthProps> = ({
                 size="s"
                 onClick={handleLogin}
             />
-            <p className={error ? "error__text" : "error__text_hidden"}>Вы неправильно ввели логин/пароль!</p>
+            <p className={(error404 || error401 || error500) ? "error__text" : "error__text_hidden"}>
+                {
+                error404 ? "Такой учетной записи нет!" :
+                error401 ? "Вы неправильно ввели логин/пароль!" :
+                error500 ? "Сервер не работает, повторите попытку позже!" : ""}</p>
+
         </main>
     );
 }
