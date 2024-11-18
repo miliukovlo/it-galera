@@ -10,8 +10,8 @@ export const login = async (loginValue: string, role: "teacher" | "admin") : Pro
     try {
         const expires = new Date(Date.now() + oneDaySeconds);
         const session = await encrypt({ loginValue, expires });
-        cookies().set("session", session, { expires, httpOnly: true });
-        cookies().set("role", role,{ expires, httpOnly: true });
+        (await cookies()).set("session", session, { expires, httpOnly: true });
+        (await cookies()).set("role", role,{ expires, httpOnly: true });
         return true;
     } catch (e) {
         console.error(e)
@@ -38,18 +38,19 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 export async function logout() {
-  cookies().delete('session')
-  cookies().delete("role")
+  const cookieStore = await cookies();
+  cookieStore.delete('session')
+  cookieStore.delete("role")
 }
 
 export async function getSession() {
-  const session = cookies().get("session")?.value;
+  const session = (await cookies()).get("session")?.value;
   if (!session) return null;
   return await decrypt(session);
 }
 
 export async function getRole() {
-  const role = cookies().get("role")?.value;
+  const role = (await cookies()).get("role")?.value;
   if (!role) return null;
   return role;
 }
