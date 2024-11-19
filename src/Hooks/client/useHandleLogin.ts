@@ -1,7 +1,7 @@
 "use server";
 
 import { GetLogin } from "./GetLogin";
-import { login } from "@/authLib";
+import { getRole, login } from "@/authLib";
 import axios from "axios";
 import { redirect } from "next/navigation";
 
@@ -16,8 +16,7 @@ export const useHandleLogin = async (
 	try {
 		const user = await GetLogin(loginValue, password);
 		if (user) {
-			await login(loginValue, "teacher");
-			redirect(user.role === "teacher" ? "/schedule" : "/users");
+			await login(loginValue, user.role);
 		}
 	} catch (e) {
 		if (axios.isAxiosError(e)) {
@@ -37,6 +36,11 @@ export const useHandleLogin = async (
 		} else {
 			console.error("Произошла ошибка:", e);
 			return "500";
+		}
+	} finally {
+		const role = await getRole()
+		if (role) {
+			redirect(role === "teacher" ? "/schedule" : "/users");
 		}
 	}
 };
