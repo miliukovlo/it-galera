@@ -1,15 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
+import { decrypt, logout } from "./authLib";
 
 export async function middleware(request: NextRequest) {
     const session = request.cookies.get('session');
     const role = request.cookies.get('role');
+    const login = request.cookies.get('login')
+
+    if (session) {
+        const decryptLogin = await decrypt(session.value)
+        if (login?.value !== decryptLogin.loginValue) {
+            logout()
+        }
+    }
 
     if (session && request.nextUrl.pathname === '/auth') {
         const redirectUrl = role?.value === "teacher" ? '/schedule' : '/users';
         return NextResponse.redirect(new URL(redirectUrl, request.url));
     }
 
-    if (!session && (
+    if ((!session || !role ) && (
         request.nextUrl.pathname === '/dashboard' || 
         request.nextUrl.pathname === '/users' || 
         request.nextUrl.pathname === '/users/:id' || 

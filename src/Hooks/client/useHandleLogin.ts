@@ -4,6 +4,7 @@ import { GetLogin } from "./GetLogin";
 import { getRole, login } from "@/authLib";
 import axios from "axios";
 import { redirect } from "next/navigation";
+import cyrillicToTranslit from 'cyrillic-to-translit-js';
 
 type state = "404" | "401" | "500" | null | undefined;
 
@@ -16,7 +17,8 @@ export const useHandleLogin = async (
 	try {
 		const user = await GetLogin(loginValue, password);
 		if (user) {
-			await login(loginValue, user.role);
+			const cyrilic = cyrillicToTranslit()
+			await login(loginValue, user.role, cyrilic.transform(user.fio));
 		}
 	} catch (e) {
 		if (axios.isAxiosError(e)) {
