@@ -5,6 +5,8 @@ import { getRole, login } from "@/authLib";
 import axios from "axios";
 import { redirect } from "next/navigation";
 import cyrillicToTranslit from 'cyrillic-to-translit-js';
+import { loginInterface } from "@/Interface/loginInterface";
+import { isUser } from "@/Interface/Guard/isUser";
 
 type state = "404" | "401" | "500" | null | undefined;
 
@@ -14,8 +16,14 @@ export const useHandleLogin = async (
 ) => {
 	const loginValue = formData.get("login") as string;
 	const password = formData.get("password") as string;
+	if (loginValue === '' || password === '') {
+		return "401"
+	}
 	try {
-		const user = await GetLogin(loginValue, password);
+		const user : loginInterface = await GetLogin(loginValue, password);
+		if (!isUser(user)) {
+			return "500"
+		}
 		if (user) {
 			const cyrilic = cyrillicToTranslit()
 			await login(loginValue, user.role, cyrilic.transform(user.fio));
