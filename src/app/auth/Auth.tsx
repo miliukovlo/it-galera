@@ -15,7 +15,7 @@ const Auth: React.FC = () => {
 			<h1 className={styles.auth__head_text}>Вход</h1>
 			<Form className={styles.auth__form} action={action}>
 				<Input
-					name={"login"}
+					name="login"
 					type="text"
 					placeholder="Введите корп. почту"
 					size="m"
