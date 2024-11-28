@@ -1,18 +1,19 @@
 "use server";
 
-import { GetLogin } from "./GetLogin";
+import { GetLogin } from "../client/GetLogin";
 import { getRole, login } from "@/authLib";
 import axios from "axios";
 import { redirect } from "next/navigation";
 
-type state = "404" | "401" | "500" | null | undefined;
+export type state = "404" | "401" | "500" | null | undefined;
 
 export const useHandleLogin = async (
 	previousState: state,
 	formData: FormData
-) => {
-	const loginValue = formData.get("login") as string;
+): Promise<state> => {
+	const loginValue = formData.get("email") as string;
 	const password = formData.get("password") as string;
+
 	try {
 		const user = await GetLogin(loginValue, password);
 		if (user) {
@@ -38,7 +39,7 @@ export const useHandleLogin = async (
 			return "500";
 		}
 	} finally {
-		const role = await getRole()
+		const role = await getRole();
 		if (role) {
 			redirect(role === "teacher" ? "/schedule" : "/users");
 		}

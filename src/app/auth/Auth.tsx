@@ -1,31 +1,64 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useRef, useTransition } from "react";
 import styles from "./auth.module.css";
 import Input from "@/Components/Common/Input/Input";
 import Button from "@/Components/Common/Button/Button";
-import { useHandleLogin } from "@/Hooks/client/useHandleLogin";
+import { useHandleLogin } from "@/Hooks/server/useHandleLogin";
 import Form from "next/form";
+import { useForm } from "react-hook-form";
+import { authSchema, authType } from "@/Schemas/authSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Auth: React.FC = () => {
-	/* error - это любое возвращенное значение из server actions  в нашем случае это значения из catch блока. Остальное и так понятно */
-	const [error, action, isPending] = useActionState(useHandleLogin, null);
+	const [error, formAction] = useActionState(useHandleLogin, null);
+	const [isPending, startTransition] = useTransition();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<authType>({
+		resolver: zodResolver(authSchema),
+		defaultValues: { email: "", password: "" },
+		mode: "onTouched",
+	});
+
+	const formRef = useRef<HTMLFormElement>(null);
+
 	return (
 		<main className={`main ${styles.auth__content}`}>
 			<h1 className={styles.auth__head_text}>Вход</h1>
-			<Form className={styles.auth__form} action={action}>
+			<Form
+				className={styles.auth__form}
+				ref={formRef}
+				action={formAction}
+				onSubmit={e => {
+					e.preventDefault();
+					handleSubmit(() => {
+						startTransition(() => {
+							formAction(new FormData(formRef.current!));
+						});
+					})(e);
+				}}>
 				<Input
-					name="login"
 					type="text"
 					placeholder="Введите корп. почту"
 					size="m"
+					name="email"
+					register={register}
+					aria-invalid={errors.email ? "true" : "false"}
 				/>
+				<small>{errors.email && errors.email?.message}</small>
 				<Input
-					name="password"
 					type="password"
 					placeholder="Введите пароль"
 					size="m"
+					name="password"
+					register={register}
+					aria-invalid={errors.password ? "true" : "false"}
 				/>
+				<small>{errors.password && errors.password.message}</small>
 				<Button disabled={isPending} text="Войти" size="s" />
 			</Form>
 
