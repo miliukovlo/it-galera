@@ -5,6 +5,7 @@ export const authSchema = z.object({
 		.string()
 		.min(1, "Поле почты должно быть заполнено")
 		.trim()
+		.toLowerCase()
 		.email({ message: "Почта указана не верно" }),
 	password: z
 		.string({ message: "Поле пароль должно быть заполненно" })

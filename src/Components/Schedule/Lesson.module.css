@@ -39,3 +39,27 @@
 .main__info_text {
     width: 100%;
 }
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.header__text {
+    width: 100%;
+    font-size: 3vh;
+    text-align: center;
+    margin: 20px;
+}
+
+.schedule_loading__container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
