@@ -2,12 +2,13 @@
 
 
 const nextConfig = {
-    async redirects() {
+    async headers() {
         return [
             {
-                source: '/',
-                destination: "/auth",
-                permanent: true
+                source: "/(.*)",
+                headers: [
+                    {key: "Cache-Control", value: "no-store"}
+                ]
             }
         ]
     }

@@ -8,7 +8,6 @@ import { useHandleLogin } from "@/Hooks/client/useHandleLogin";
 import Form from "next/form";
 
 const Auth: React.FC = () => {
-	/* error - это любое возвращенное значение из server actions  в нашем случае это значения из catch блока. Остальное и так понятно */
 	const [error, action, isPending] = useActionState(useHandleLogin, null);
 	return (
 		<main className={`main ${styles.auth__content}`}>
