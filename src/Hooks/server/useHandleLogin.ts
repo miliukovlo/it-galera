@@ -1,31 +1,31 @@
 "use server";
 
-import { GetLogin } from "./GetLogin";
+import { GetLogin } from "../client/GetLogin";
 import { getRole, login } from "@/authLib";
 import axios from "axios";
 import { redirect } from "next/navigation";
-import cyrillicToTranslit from 'cyrillic-to-translit-js';
+import cyrillicToTranslit from "cyrillic-to-translit-js";
 import { loginInterface } from "@/Interface/loginInterface";
 import { isUser } from "@/Interface/Guard/isUser";
 
-type state = "404" | "401" | "500" | null | undefined;
+export type state = "404" | "401" | "500" | null | undefined;
 
 export const useHandleLogin = async (
 	previousState: state,
 	formData: FormData
-) => {
-	const loginValue = formData.get("login") as string;
+): Promise<state> => {
+	const loginValue = formData.get("email") as string;
 	const password = formData.get("password") as string;
-	if (loginValue === '' || password === '') {
-		return "401"
+	if (loginValue === "" || password === "") {
+		return "401";
 	}
 	try {
-		const user : loginInterface = await GetLogin(loginValue, password);
+		const user: loginInterface = await GetLogin(loginValue, password);
 		if (!isUser(user)) {
-			return "500"
+			return "500";
 		}
 		if (user) {
-			const cyrilic = cyrillicToTranslit()
+			const cyrilic = cyrillicToTranslit();
 			await login(loginValue, user.role, cyrilic.transform(user.fio));
 		}
 	} catch (e) {
@@ -48,7 +48,7 @@ export const useHandleLogin = async (
 			return "500";
 		}
 	} finally {
-		const role = await getRole()
+		const role = await getRole();
 		if (role) {
 			redirect(role === "teacher" ? "/schedule" : "/users");
 		}
