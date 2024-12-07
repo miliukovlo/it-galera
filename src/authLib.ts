@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const oneDaySeconds = 86400 * 1000
 
-export const login = async (loginValue: string, role: "teacher" | "admin", fio: string) : Promise<boolean> => {
+export const login = async (loginValue: string, role: "teacher" | "admin", fio: string, group?: Array<string>) : Promise<boolean> => {
     try {
         const cookieStore = await cookies()
         const expires = new Date(Date.now() + oneDaySeconds);
@@ -14,6 +14,7 @@ export const login = async (loginValue: string, role: "teacher" | "admin", fio: 
         cookieStore.set("session", session, { expires, httpOnly: true });
         cookieStore.set("login", loginValue, { expires, httpOnly: true });
         cookieStore.set("role", role,{ expires, httpOnly: true });
+        cookieStore.set("group", JSON.stringify(group),{ expires, httpOnly: true })
         cookieStore.set("fio", fio,{ expires, httpOnly: true });
         return true;
     } catch (e) {
@@ -45,6 +46,7 @@ export async function logout() {
   cookieStore.delete('session')
   cookieStore.delete("role")
   cookieStore.delete("fio")
+  cookieStore.delete("group")
   cookieStore.delete("login")
 }
 
@@ -53,7 +55,11 @@ export async function getSession() {
   if (!session) return null;
   return await decrypt(session);
 }
-
+export async function getGroup() {
+  const groups = (await cookies()).get("group")?.value;
+  if (!groups) return null;
+  return await JSON.parse(groups);
+}
 export async function getRole() {
   const role = (await cookies()).get("role")?.value;
   if (!role) return null;

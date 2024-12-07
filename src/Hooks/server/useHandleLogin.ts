@@ -26,7 +26,7 @@ export const useHandleLogin = async (
 		}
 		if (user) {
 			const cyrilic = cyrillicToTranslit();
-			await login(loginValue, user.role, cyrilic.transform(user.fio));
+			await login(loginValue, user.role, cyrilic.transform(user.fio), user.groups);
 		}
 	} catch (e) {
 		if (axios.isAxiosError(e)) {
