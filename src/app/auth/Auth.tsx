@@ -43,22 +43,22 @@ const Auth: React.FC = () => {
 				}}>
 				<Input
 					type="text"
-					placeholder="Введите корп. почту"
+					placeholder={errors.email ? errors.email.message : "Введите почту"}
+					error={errors.email ? true : false}
 					size="m"
 					name="email"
 					register={register}
 					aria-invalid={errors.email ? "true" : "false"}
 				/>
-				<small>{errors.email && errors.email?.message}</small>
 				<Input
 					type="password"
-					placeholder="Введите пароль"
+					placeholder={errors.password ? errors.password.message : "Введите пароль"}
+					error={errors.password ? true : false}
 					size="m"
 					name="password"
 					register={register}
 					aria-invalid={errors.password ? "true" : "false"}
 				/>
-				<small>{errors.password && errors.password.message}</small>
 				<Button disabled={isPending} text="Войти" size="s" />
 			</Form>
 

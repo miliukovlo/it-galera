@@ -7,10 +7,11 @@ interface InputProps {
 	type: string;
 	value?: string;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	placeholder: string;
+	placeholder?: string;
 	name: string | undefined;
 	register: UseFormRegister<authType>;
 	size: "m" | "l";
+	error?: boolean
 }
 
 const Input: React.FC<InputProps> = React.memo(
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = React.memo(
 		placeholder,
 		size,
 		name,
+		error,
 		register,
 	}: InputProps) => {
 		return (
@@ -30,9 +32,13 @@ const Input: React.FC<InputProps> = React.memo(
 				value={value}
 				// onChange={onChange}
 				className={
-					size === "m"
+					size === "m" && !error
 						? `${styles.input} ${styles.size_m}`
-						: `${styles.input} ${styles.size_m}`
+						: size === "m" && error ?
+						`${styles.input} ${styles.size_m} ${styles.error}`
+						: size === 'l' && error ?
+						`${styles.input} ${styles.size_l} ${styles.error}`
+						: `${styles.input} ${styles.size_l}`
 				}
 				{...(register ? register(name as "email" | "password") : {})}
 			/>

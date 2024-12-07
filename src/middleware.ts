@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { decrypt, logout } from "./authLib";
 
 export async function middleware(request: NextRequest) {
+
+    if (request.nextUrl.pathname === "/") {
+        console.log('redirect')
+        return NextResponse.redirect(new URL("/auth", request.url))
+    }
+
     const session = request.cookies.get('session');
     const role = request.cookies.get('role');
     const login = request.cookies.get('login')
@@ -42,6 +48,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
+        "/",
         "/auth",
         "/dashboard",
         "/users",
