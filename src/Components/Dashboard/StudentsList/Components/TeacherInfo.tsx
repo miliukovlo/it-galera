@@ -1,25 +1,30 @@
-import React from 'react';
-import styles from "./TeacherInfo.module.css"
-import { RootState } from '@/store/store';
-import { useSelector } from 'react-redux';
+import React from "react";
+import styles from "./TeacherInfo.module.css";
 
 interface TeacherInfoProps {
-    title: string,
-    group: string
+	title: string;
+	group: string;
+	teacher__info: string;
 }
 
 const TeacherInfo: React.FC<TeacherInfoProps> = ({
-    title,
-    group
+	title,
+	group,
+	teacher__info,
 }) => {
-    const user = useSelector((state: RootState) => state.user.user);
-    return (
-        <div className={styles.about__lesson}>
-            <p className={styles.teacher__info}><b>Имя преподавателя:</b> {user?.fio}</p>
-            <p className={styles.teacher__info}><b>Предмет:</b> {title}</p>
-            <p className={styles.teacher__info}><b>Группа:</b> {group}</p>
-        </div>
-    );
-}
+	return (
+		<div className={styles.about__lesson}>
+			<p className={styles.teacher__info}>
+				<b>Имя преподавателя:</b> {teacher__info}
+			</p>
+			<p className={styles.teacher__info}>
+				<b>Предмет:</b> {title}
+			</p>
+			<p className={styles.teacher__info}>
+				<b>Группа:</b> {group}
+			</p>
+		</div>
+	);
+};
 
 export default TeacherInfo;

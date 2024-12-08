@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
@@ -10,19 +10,19 @@ import { filterInterface } from "@/Interface/filterInterface";
 import { selectData, selectTeacherData } from "@/data/selectData";
 import { setFilterChange } from "@/Hooks/setFilterChange";
 import Accordion from "./Accordion/Accordion";
-import { GetUsersList } from "@/Hooks/server/GetUsersList";
+import useSWRInfinite from "swr/infinite";
+import axios from "axios";
+
+const PAGE_SIZE = 6;
+
+const fetcher = (url: string) => axios.get(url).then(response => response.data);
 
 interface UsersListProps {
-	role: string,
-	group: Array<string>
+	role: string;
+	group: Array<string>;
 }
 
-const UsersList: React.FC<UsersListProps> = ({
-	role,
-	group
-}) => {
-	const [limit, setLimit] = useState<number>(10);
-	const [filteredList, setFilteredList] = useState<generatedStudentsInterface[]>([]);
+const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 	const [openId, setId] = useState<number>(-1);
 	const [filter, setFilter] = useState<filterInterface>({
 		name: "",
@@ -31,20 +31,21 @@ const UsersList: React.FC<UsersListProps> = ({
 		role: "",
 		department: "",
 	});
-	
-	const fetchStudents = async (type: "limit" | "searchAll") => {
-		try {
-			const students: generatedStudentsInterface[] = await GetUsersList(type, limit);
-			return students;
-		} catch (error) {
-			console.error("Error fetching students:", error);
-			return [];
-		}
-	};
-	
-	
+
+	const [test, setTest] = useState<string>(""); // Здесь пришлось так сделать.. да, костыль) как будет готовый бэк поменяем
+
+	const getKey = (index: number) =>
+		`http://localhost:5007/api/generate/students/page=${index}/limit=${PAGE_SIZE}${
+			test ? "?name=" + filter.name : ""
+		}`;
+
+	const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
+
+	const users: generatedStudentsInterface[] = data ? [].concat(...data) : []; // Так как data из себя представляет отдельные объекты каждой страницы, мы объединяем ее в один список
+
 	const handleResetFilter = () => {
-		setLimit(10);
+		setSize(2); // size 1 это 0 страница, которой нет
+		setTest("");
 		setFilter({
 			name: "",
 			campus: "",
@@ -53,51 +54,26 @@ const UsersList: React.FC<UsersListProps> = ({
 			department: "",
 		});
 	};
-	
+
 	const handleFilterChange = useCallback(
 		(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 			setFilterChange(e, setFilter);
 		},
 		[]
 	);
-	
+
 	const handleFindStudent = async () => {
-		setLimit(10)
-		const students = await fetchStudents("searchAll");
-		
-		const filteredUsers = students.filter((student: generatedStudentsInterface) =>
-			student.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-			student.role.includes(filter.role) &&
-			student.group?.includes(filter.group_name)
-		);
-		
-		setFilteredList(filteredUsers.slice(0, limit));
+		setSize(2); // Аналогично с 66 стр
+		setTest(filter.name);
 	};
-	
+
 	const [ref, inView] = useInView({ threshold: 1 });
-	
+
 	useEffect(() => {
 		if (inView) {
-			setLimit(prevLimit => prevLimit + 10);
+			setSize(size + 1);
 		}
 	}, [inView]);
-	
-	useEffect(() => {
-		const applyFilters = async () => {
-			const students = await fetchStudents("searchAll");
-			
-			const filteredUsers = students.filter(user =>
-				user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
-				user.role.includes(filter.role) &&
-				user.group?.includes(filter.group_name)
-			);
-			
-			setFilteredList(filteredUsers.slice(0, limit));
-		};
-	
-		applyFilters();
-	}, [limit]); 
-	
 
 	return (
 		<article className={styles.content}>
@@ -105,18 +81,16 @@ const UsersList: React.FC<UsersListProps> = ({
 				filter={filter}
 				onFilterChange={handleFilterChange}
 				onResetFilter={handleResetFilter}
-				selectData={(role == "teacher"
-					? selectTeacherData
-					: selectData
-				).map(select =>
-					select.id === 3 && role === "teacher"
-						? {
-								...select,
-								options: select.options.filter(option =>
-									group?.includes(option.text)
-								),
-						  	}
-						: select
+				selectData={(role == "teacher" ? selectTeacherData : selectData).map(
+					select =>
+						select.id === 3 && role === "teacher"
+							? {
+									...select,
+									options: select.options.filter(option =>
+										group?.includes(option.text)
+									),
+							  }
+							: select
 				)}
 				handleFind={handleFindStudent}
 				component="users"
@@ -124,16 +98,16 @@ const UsersList: React.FC<UsersListProps> = ({
 
 			<ul className={styles.users__list}>
 				{role && role === "admin" ? (
-					filteredList.length === 0 ? (
+					users.length === 0 ? (
 						<h1 className={styles.usersNotFound}>Пользователи не найдены!</h1>
 					) : (
-						filteredList.map(user => (
+						users.map((user, index) => (
 							<UserElement
 								id={user._id}
 								name={user.name}
 								group={user.group}
 								role={user.role}
-								key={user._id}
+								key={index}
 							/>
 						))
 					)

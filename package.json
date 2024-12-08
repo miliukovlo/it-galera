@@ -24,6 +24,7 @@
     "react-loading-skeleton": "^3.5.0",
     "react-redux": "^9.1.2",
     "rsuite": "^5.71.0",
+    "swr": "^2.2.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
