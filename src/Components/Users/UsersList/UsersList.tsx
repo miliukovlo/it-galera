@@ -10,12 +10,7 @@ import { filterInterface } from "@/Interface/filterInterface";
 import { selectData, selectTeacherData } from "@/data/selectData";
 import { setFilterChange } from "@/Hooks/setFilterChange";
 import Accordion from "./Accordion/Accordion";
-import useSWRInfinite from "swr/infinite";
-import axios from "axios";
-
-const PAGE_SIZE = 6;
-
-const fetcher = (url: string) => axios.get(url).then(response => response.data);
+import { GetUsersList } from "@/Hooks/server/GetUsersList";
 
 interface UsersListProps {
 	role: string;
@@ -23,6 +18,10 @@ interface UsersListProps {
 }
 
 const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
+	const [limit, setLimit] = useState<number>(10);
+	const [filteredList, setFilteredList] = useState<
+		generatedStudentsInterface[]
+	>([]);
 	const [openId, setId] = useState<number>(-1);
 	const [filter, setFilter] = useState<filterInterface>({
 		name: "",
@@ -32,20 +31,21 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 		department: "",
 	});
 
-	const [test, setTest] = useState<string>(""); // Здесь пришлось так сделать.. да, костыль) как будет готовый бэк поменяем
-
-	const getKey = (index: number) =>
-		`http://localhost:5007/api/generate/students/page=${index}/limit=${PAGE_SIZE}${
-			test ? "?name=" + filter.name : ""
-		}`;
-
-	const { data, size, setSize } = useSWRInfinite(getKey, fetcher);
-
-	const users: generatedStudentsInterface[] = data ? [].concat(...data) : []; // Так как data из себя представляет отдельные объекты каждой страницы, мы объединяем ее в один список
+	const fetchStudents = async (type: "limit" | "searchAll") => {
+		try {
+			const students: generatedStudentsInterface[] = await GetUsersList(
+				type,
+				limit
+			);
+			return students;
+		} catch (error) {
+			console.error("Error fetching students:", error);
+			return [];
+		}
+	};
 
 	const handleResetFilter = () => {
-		setSize(2); // size 1 это 0 страница, которой нет
-		setTest("");
+		setLimit(10);
 		setFilter({
 			name: "",
 			campus: "",
@@ -63,17 +63,43 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 	);
 
 	const handleFindStudent = async () => {
-		setSize(2); // Аналогично с 66 стр
-		setTest(filter.name);
+		setLimit(10);
+		const students = await fetchStudents("searchAll");
+
+		const filteredUsers = students.filter(
+			(student: generatedStudentsInterface) =>
+				student.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+				student.role.includes(filter.role) &&
+				student.group?.includes(filter.group_name)
+		);
+
+		setFilteredList(filteredUsers.slice(0, limit));
 	};
 
 	const [ref, inView] = useInView({ threshold: 1 });
 
 	useEffect(() => {
 		if (inView) {
-			setSize(size + 1);
+			setLimit(prevLimit => prevLimit + 10);
 		}
 	}, [inView]);
+
+	useEffect(() => {
+		const applyFilters = async () => {
+			const students = await fetchStudents("searchAll");
+
+			const filteredUsers = students.filter(
+				user =>
+					user.name.toLowerCase().includes(filter.name.toLowerCase()) &&
+					user.role.includes(filter.role) &&
+					user.group?.includes(filter.group_name)
+			);
+
+			setFilteredList(filteredUsers.slice(0, limit));
+		};
+
+		applyFilters();
+	}, [limit]);
 
 	return (
 		<article className={styles.content}>
@@ -98,16 +124,16 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 
 			<ul className={styles.users__list}>
 				{role && role === "admin" ? (
-					users.length === 0 ? (
+					filteredList.length === 0 ? (
 						<h1 className={styles.usersNotFound}>Пользователи не найдены!</h1>
 					) : (
-						users.map((user, index) => (
+						filteredList.map(user => (
 							<UserElement
 								id={user._id}
 								name={user.name}
 								group={user.group}
 								role={user.role}
-								key={index}
+								key={user._id}
 							/>
 						))
 					)
