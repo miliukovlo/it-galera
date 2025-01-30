@@ -5,7 +5,7 @@ import Lesson from "@/Components/Schedule/Lesson";
 import { GetSchedule } from "@/Hooks/client/GetSchedule";
 
 const Schedule = async () => {
-	await new Promise(resolve => setTimeout(resolve, 4000));
+	// await new Promise(resolve => setTimeout(resolve, 4000));
 	const schedule = await GetSchedule();
 	return (
 		<article className={styles.content}>
