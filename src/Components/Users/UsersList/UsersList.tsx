@@ -101,13 +101,13 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 					users.length === 0 ? (
 						<h1 className={styles.usersNotFound}>Пользователи не найдены!</h1>
 					) : (
-						users.map((user, index) => (
+						users.map(user => (
 							<UserElement
 								id={user._id}
 								name={user.name}
 								group={user.group}
 								role={user.role}
-								key={index}
+								key={user._id}
 							/>
 						))
 					)
