@@ -1,7 +1,7 @@
-import React from "react";
 import style from "./NewDashPage.module.css";
 import Link from "next/link";
 import Modal from "@/Components/Common/Modal/Modal";
+import DashboardNewClassModal from "@/Components/NewDashboard/DashboardNewClassModal";
 
 const NewDashPage = async ({
 	searchParams,
@@ -24,7 +24,7 @@ const NewDashPage = async ({
 				</Link>
 			</section>
 			<Modal open={show === "true"} config={{ backdrop: true }}>
-				Modal
+				<DashboardNewClassModal />
 			</Modal>
 		</main>
 	);

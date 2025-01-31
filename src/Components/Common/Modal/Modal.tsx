@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 
 interface ModalConfig {
 	backdrop?: boolean;
+	width?: string;
+	height?: string;
 }
 
 interface ModalProps {
