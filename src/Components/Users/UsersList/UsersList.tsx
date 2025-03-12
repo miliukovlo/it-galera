@@ -15,7 +15,8 @@ import axios from "axios";
 
 const PAGE_SIZE = 6;
 
-const fetcher = (url: string) => axios.get(url).then(response => response.data);
+const fetcher = (url: string) =>
+	axios.get(url).then((response) => response.data);
 
 interface UsersListProps {
 	role: string;
@@ -59,7 +60,7 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 		(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 			setFilterChange(e, setFilter);
 		},
-		[]
+		[],
 	);
 
 	const handleFindStudent = async () => {
@@ -82,15 +83,15 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 				onFilterChange={handleFilterChange}
 				onResetFilter={handleResetFilter}
 				selectData={(role == "teacher" ? selectTeacherData : selectData).map(
-					select =>
+					(select) =>
 						select.id === 3 && role === "teacher"
 							? {
 									...select,
-									options: select.options.filter(option =>
-										group?.includes(option.text)
+									options: select.options.filter((option) =>
+										group?.includes(option.text),
 									),
-							  }
-							: select
+								}
+							: select,
 				)}
 				handleFind={handleFindStudent}
 				component="users"
@@ -101,7 +102,7 @@ const UsersList: React.FC<UsersListProps> = ({ role, group }) => {
 					users.length === 0 ? (
 						<h1 className={styles.usersNotFound}>Пользователи не найдены!</h1>
 					) : (
-						users.map(user => (
+						users.map((user) => (
 							<UserElement
 								id={user._id}
 								name={user.name}

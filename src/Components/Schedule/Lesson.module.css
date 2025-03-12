@@ -1,65 +1,67 @@
 .lesson__link {
-    width: 90%;
-    height: 25%;
-    margin-top: 20px;
+	width: 90%;
+	height: 25%;
+	margin-top: 20px;
 }
 .lesson_element {
-    width: 100%;
-    height: 100%;
-    min-height: 100px;
-    border-radius: 12px;
-    background-color: var(--secondary-color);
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    transition-duration: 0.4s;
+	width: 100%;
+	height: 100%;
+	min-height: 100px;
+	border-radius: 12px;
+	background-color: var(--secondary-color);
+	box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	transition-duration: 0.4s;
 }
 .main__info {
-    width: 40%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left: 10px;
+	width: 40%;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: space-around;
+	margin-left: 10px;
 }
 .lesson_element:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }
+
 .lesson__header {
-    font-size: 2.2vh;
+	font-size: 2.2vh;
 }
 .name__info {
-    font-size: 2.2vh
+	font-size: 2.2vh;
 }
 .lesson__info {
-    font-size: 1.7vh;
-    width: 20%;
+	font-size: 1.7vh;
+	width: 20%;
 }
 .main__info_text {
-    width: 100%;
+	width: 100%;
 }
 
 .content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 }
 .header__text {
-    width: 100%;
-    font-size: 3vh;
-    text-align: center;
-    margin: 20px;
+	width: 100%;
+	font-size: 3vh;
+	text-align: center;
+	margin: 20px;
 }
 
-.schedule_loading__container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.schedule_loading__container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
+

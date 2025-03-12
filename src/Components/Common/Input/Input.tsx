@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, memo } from "react";
 import styles from "./Input.module.css";
 import { UseFormRegister } from "react-hook-form";
 import { authType } from "@/Schemas/authSchema";
@@ -10,40 +10,41 @@ interface InputProps {
 	placeholder?: string;
 	name?: string | undefined;
 	register?: UseFormRegister<authType>;
-	size: "m" | "l";
+	size: "m" | "l" | "full";
 	error?: boolean;
+	label?: string;
 }
 
-const Input: React.FC<InputProps> = React.memo(
+const sizeMap: Record<string, string> = {
+	["m"]: `${styles.input} ${styles.size_m}`,
+	["l"]: `${styles.input} ${styles.size_l}`,
+	["full"]: `${styles.input} ${styles.size_full}`,
+};
+
+const Input: FC<InputProps> = memo(
 	({
 		type,
 		value,
-		// onChange,
 		placeholder,
 		size,
 		name,
 		error,
+		label,
 		register,
 	}: InputProps) => {
 		return (
-			<input
-				type={type}
-				placeholder={placeholder}
-				value={value}
-				// onChange={onChange}
-				className={
-					size === "m" && !error
-						? `${styles.input} ${styles.size_m}`
-						: size === "m" && error
-						? `${styles.input} ${styles.size_m} ${styles.error}`
-						: size === "l" && error
-						? `${styles.input} ${styles.size_l} ${styles.error}`
-						: `${styles.input} ${styles.size_l}`
-				}
-				{...(register ? register(name as "email" | "password") : {})}
-			/>
+			<>
+				{label && <label className={styles.input_label}>{label}</label>}
+				<input
+					type={type}
+					placeholder={placeholder}
+					value={value}
+					className={`${sizeMap[size as keyof typeof sizeMap]} ${error ? styles.error : ""}`}
+					{...(register ? register(name as "email" | "password") : {})}
+				/>
+			</>
 		);
-	}
+	},
 );
 
 Input.displayName = "Input";
